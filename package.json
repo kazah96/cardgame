@@ -1,34 +1,29 @@
 {
-  "name": "react-education-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Igor3411/react-education-server.git"
+    "url": "https://github.com/Igor3411/react-education-server.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Igor3411/react-education-server/issues"
-  },
-  "homepage": "https://github.com/Igor3411/react-education-server#readme",
-  "dependencies": {
-    "async": "^2.6.1",
-    "body-parser": "^1.18.3",
-    "connect-mongo": "^2.0.1",
-    "ejs-locals": "^1.0.2",
-    "express": "^3.21.2",
-    "mongodb": "^3.1.8",
-    "mongoose": "^5.3.3",
-    "nconf": "^0.10.0",
-    "node-uuid": "^1.4.8",
-    "string": "^3.3.3",
-    "validator": "^10.8.0",
-    "winston": "^3.1.0"
-  }
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Mark Pundsack",
+  "contributors": [
+    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
+  ],
+  "license": "MIT"
 }
