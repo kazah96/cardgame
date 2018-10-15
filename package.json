@@ -19,9 +19,10 @@
   "homepage": "https://github.com/Igor3411/react-education-server#readme",
   "dependencies": {
     "async": "^2.6.1",
+    "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
     "ejs-locals": "^1.0.2",
-    "express": "^4.16.4",
+    "express": "^3.21.2",
     "mongodb": "^3.1.8",
     "mongoose": "^5.3.3",
     "nconf": "^0.10.0",
