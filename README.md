@@ -1,6 +1,6 @@
 # react-education-server
 
-##Расположение
+## Расположение
 
 Индекс находится в папке .\views\index.ejs, на данный момент там находится пример с отправкой запроса для авторизации. Здесь будет
 располагатья root. Ознакомьтесь с примером.
@@ -15,8 +15,19 @@
 /timeOfday возвращает время суток день\ночь в виде JSON файла формата {time: day\night}. Период изменения 1 мин.
 /temperature возращает температуру в мире  в виде JSON файла формата {temperature: Number}. Период изменения 20 сек.
 
-##Пример запроса
+## Пример запроса
 
+### html
+
+```html
+    <form action="/register" method="post" name="registerForm">
+        <label>Имя</label><br>
+        <input type="text" name="userName" /><br><br>
+        <input type="submit" value="Отправить" />
+    </form>
+```
+
+### js
 ```js
         document.querySelector("form").addEventListener("submit", (event) => {  
             event.preventDefault();
