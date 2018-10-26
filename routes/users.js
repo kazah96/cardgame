@@ -10,9 +10,9 @@ router.get('/', function (req, res, next) {
 router.post("/", function (req, res, next) {
   if (!req.body) return res.sendStatus(400);
   const name = req.body.userName;
-  console.log(1)
-  nameUser(name)
-  next()
+  const message = nameUser(name);
+  console.log(nameUser(name));
+  res.json({userName: message});
 });
 
 module.exports = router;
