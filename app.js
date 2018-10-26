@@ -1,14 +1,14 @@
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let jsonParser = express.json();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const jsonParser = express.json();
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-let app = express();
+const app = express();
 
 
 // view engine setup

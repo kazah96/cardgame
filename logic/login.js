@@ -1,9 +1,9 @@
-function nameUser (user) {
-    if (name = "Кирилл"){
+export const nameUser = (user) => {
+    if (name = "Кирилл") {
         loginIn(user)
     }
 }
 
-function loginIn(user){
-    
+const loginIn = (user) => {
+
 }
