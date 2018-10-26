@@ -54,3 +54,21 @@
         });
 
 ```
+
+## Пример возврата карты
+
+```JSON
+    {
+        "user": user,
+        "map": [map],
+        "time": "day\night",
+        "temperature": Number,
+        "event": {
+            ...
+            "cataclysm": fire,
+            ...
+        }
+    }
+```
+
+
