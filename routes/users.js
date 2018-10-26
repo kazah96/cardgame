@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const nameUser = require('../logic/login')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -9,8 +10,9 @@ router.get('/', function (req, res, next) {
 router.post("/", function (req, res, next) {
   if (!req.body) return res.sendStatus(400);
   const name = req.body.userName;
-  // userIn(name);
-  res.json({user: "name"});
+  console.log(1)
+  nameUser(name)
+  next()
 });
 
 module.exports = router;
