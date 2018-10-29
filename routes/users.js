@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const nameUser = require('../logic/login')
+const nameUser = require('../logic/login');
+const users = require('../models/user').User;
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+  users.find({}).then(data => res.send(data));
 });
 
 router.post("/", function (req, res, next) {
@@ -12,7 +13,7 @@ router.post("/", function (req, res, next) {
   const name = req.body.userName;
   const message = nameUser(name);
   console.log(nameUser(name));
-  res.json({userName: message});
+  res.json({ userName: message });
 });
 
 module.exports = router;

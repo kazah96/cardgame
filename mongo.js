@@ -1,28 +1,15 @@
-const mongoose = require('mongoose');
-const mongoClient = require('mongodb').MongoClient;
-const express = require('express');
+const worldModel = require('./models/world').World;
 
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
-    name: String,
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    admin: Boolean,
-    location: String
+const world = new worldModel({
+    user: "eba",
+    map: "asdasdas",
+    time: 4,
+    temperature: 4,
+    event: {
+        cataclysm: "fire"
+    }
 });
 
-userSchema.methods.dudify = function () {
-    this.name = this.name + '-dude';
+world.save();
 
-    return this.name;
-}
-
-const User = mongoose.model('User', userSchema);
-
-const chris = new User({ name: "petooh", username: "pok", pass: "123" });
-
-chris.dudify().then(result => console.log("NAME IS " + result));
-
-chris.save();
-
+worldModel.find({}, console.log);
