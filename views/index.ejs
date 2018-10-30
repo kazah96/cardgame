@@ -16,14 +16,14 @@
         document.querySelector("form").addEventListener("submit", (event) => {  
             event.preventDefault();
             const registerForm = document.forms["registerForm"];
-            const userName = registerForm.elements["userName"].value;
-            const url = '/users';   //Выбрать из routes
+            const eventName = registerForm.elements["userName"].value;
+            const url = '/event';   //Выбрать из routes
             fetch(url, {  
                 method: 'post', 
                 headers: {  
                     "Content-type": "application/json; charset=UTF-8"  
                     }, 
-                body: JSON.stringify({userName: userName}), //Отправляемый JSON
+                body: JSON.stringify({eventName: eventName}), //Отправляемый JSON
             }) 
             .then(response => response.json())
             .then((data) => console.log(data)) //Обрабатываем пришедшие данные
