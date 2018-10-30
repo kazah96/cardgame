@@ -17,13 +17,15 @@
             event.preventDefault();
             const registerForm = document.forms["registerForm"];
             const eventName = registerForm.elements["userName"].value;
-            const url = '/event';   //Выбрать из routes
+            const url = '/world';   //Выбрать из routes
             fetch(url, {  
                 method: 'post', 
                 headers: {  
                     "Content-type": "application/json; charset=UTF-8"  
                     }, 
-                body: JSON.stringify({eventName: eventName}), //Отправляемый JSON
+                body: JSON.stringify({user: eventName,
+            map: {1:1},
+            events: [{1:1},{1:2}]}), //Отправляемый JSON
             }) 
             .then(response => response.json())
             .then((data) => console.log(data)) //Обрабатываем пришедшие данные

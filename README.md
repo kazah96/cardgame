@@ -15,7 +15,7 @@
         {   
             "user": "",
             "map": {},
-            "events": []
+            "events": [{}, {}]
         }
     ```
   * POST /world
@@ -24,71 +24,39 @@
         {   
             "user": "",
             "map": {},
-            "events": []
+            "events": [{}, {}]
         }
     ```
     Обновляет, если мир пользователя user уже существует, добавляет если не существует.
 
-* /users принимает JSON файл формата {userName: userName} для создания пользователя.
+    * POST /event возвращает значение события в виде JSON файла формата: 
+    ```JSON
+        {
+            eventType: "x",
+        }
+    ```
+, где x значение события, строка, если значение строкове и число, если числовое.
 
-Выполняется после авторизации 
+### Существующие event
 
-* /users/map возвращает сохраненную карту со всеми параметрами в виде JSON файла формата 
-```JSON
-    {
-        "map": [map],
-        "time": "day\night",
-        "temperature": Number
-    }
-```
-* /timeOfday возвращает время суток день\ночь в виде JSON файла формата {"time": day\night}. Период изменения 1 мин.
-* /temperature возращает температуру в мире  в виде JSON файла формата {"temperature": Number}. Период изменения 20 сек.
-* /users/savemap сохраняет переданную карту (обязательно передача параметров температуры и дня) формат аналогичный /map.
+    eventName: "temperature" - Вернет числовое значение в интервале [1,30], в виде { temperature: 25 }. Обновление при каждом запросе.
+
+    eventName: "timeOfday" - Вернет строковое значение "day" или "night", в виде { time: "day" }. Обновление каждые 30 сек.
 
 ## Пример запроса
 
-### html
-
-```html
-    <form action="/register" method="post" name="registerForm">
-        <label>Имя</label><br>
-        <input type="text" name="userName" /><br><br>
-        <input type="submit" value="Отправить" />
-    </form>
-```
-
 ### js
 ```js
-        document.querySelector("form").addEventListener("submit", (event) => {  
-            event.preventDefault();
-            const registerForm = document.forms["registerForm"];
-            const userName = registerForm.elements["userName"].value;
-            const url = '/users';   //Выбрать из routes
+            const eventType = "temperature";
+            const url = '/event';   //Выбрать из routes
             fetch(url, {  
                 method: 'post',  
-                body: JSON.stringify({userName: userName}), //Отправляемый JSON
+                body: JSON.stringify({eventName: eventType}), //Отправляемый JSON
             }) 
             .then(response => response.json())
             .then((data) => console.log(data)) //Обрабатываем пришедшие данные
             .catch( (error) => console.log('Request failed', JSON.parse(error)));
-        });
 
-```
-
-## Пример возврата карты
-
-```JSON
-    {
-        "user": user,
-        "map": [map],
-        "time": "day\night",
-        "temperature": Number,
-        "event": {
-            ...
-            "cataclysm": fire,
-            ...
-        }
-    }
 ```
 
 

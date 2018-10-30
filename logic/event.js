@@ -3,7 +3,7 @@ function getRandomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const temperature = () => {
-  const t = getRandomInRange(1, 10);
+  const t = getRandomInRange(1, 30);
   return { temperature: t };
 };
 
