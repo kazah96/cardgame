@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 
 // Add headers
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // use "*" to all domains
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
