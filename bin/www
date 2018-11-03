@@ -7,6 +7,9 @@
 const debug = require("debug")("react-education-server:server");
 const http = require("http");
 const app = require("../app");
+const wss = require("../network/websocket");
+
+console.log(wss.myId);
 
 /**
  * Get port from environment and store in Express.
