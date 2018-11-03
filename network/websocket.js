@@ -9,6 +9,24 @@ function init() {
     port: 8080,
   });
 
+  function addNewConnection(ws) {
+    let id = availableIds.pop();
+    if (id === undefined) {
+      id = connectionCount;
+    }
+
+    connections[id] = ws;
+    ws.id = id; // eslint-disable-line
+    connectionCount += 1;
+  }
+
+  function removeConnection(ws) {
+    delete connections[ws.id];
+    availableIds.push(ws.id);
+    connectionCount -= 1;
+  }
+
+
   wss.on("connection", (ws) => {
     ws.on("close", () => {
       removeConnection(ws);
@@ -22,27 +40,10 @@ function init() {
 
   wss.getConnection = id => connections[id];
 
-  function addNewConnection(ws) {
-    let id = availableIds.pop();
-    if (id === undefined) {
-      id = connectionCount;
-    }
-
-    connections[id] = ws;
-    ws.id = id;
-    connectionCount += 1;
-  }
-
-  function removeConnection(ws) {
-    delete connections[ws.id];
-    availableIds.push(ws.id);
-    connectionCount -= 1;
-  }
-
   return wss;
 }
 
-const name = 'websocketServer';
+const name = "websocketServer";
 
 function getInstance() {
   if (global[name]) {

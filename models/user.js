@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
     unique: true,
     type: String,
   },
+  password: {
+    required: true,
+    type: String,
+  },
+  year: Number,
 });
 
 exports.User = mongoose.model(modelName, userSchema);
