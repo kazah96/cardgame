@@ -1,26 +1,16 @@
-const socket = new WebSocket("ws://localhost:8080");
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import ReactDom from 'react-dom';
 
-const id = window.sessionStorage.getItem("id");
+class Root extends Component {
+    render() {
+        return <div className="block">
+           PIZDAAAedf
 
-socket.onopen = function () {
-  alert("Соединение установлено.");
-  sendMessage("ESTABLISH_SESSION", { sessionId: id });
-};
-
-function sendMessage(type, obj) {
-  const message = JSON.stringify({ type, payload: obj });
-
-  socket.send(message);
+        </div>
+    }
 }
 
-socket.onmessage = (msg) => {
-  const message = JSON.parse(msg.data);
-  switch (message.type) {
-    case "ESTABLISH_SESSION":
-      window.sessionStorage.setItem("id", message.data.sessionId);
-      console.log("estaclihh");
-      break;
-    default:
-      console.log(msg);
-  }
-};
+let cont = document.getElementById("root");
+
+ReactDom.render(<Root />, cont);

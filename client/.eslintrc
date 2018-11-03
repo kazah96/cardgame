@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb-base"
+  ],
+  "rules": {
+    "jsx-quotes": [
+      1,
+      "prefer-double"
+    ]
+  },
+  "plugins": [
+    "prettier"
+  ]
+}

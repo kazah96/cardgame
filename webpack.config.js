@@ -1,0 +1,42 @@
+const path = require("path");
+
+module.exports = {
+  mode: "development",
+  entry: "./client/index.js",
+  output: {
+    path: path.resolve(__dirname, "client/build"),
+    filename: "bundlick.js",
+  },
+  module: {
+
+    rules: [
+      // rules for modules (configure loaders, parser options, etc.)
+      {
+        test: /\.(js|jsx|mjs)$/,
+        enforce: "pre",
+
+        // these are matching conditions, each accepting a regular expression or string
+        // test and include have the same behavior, both must be matched
+        // exclude must not be matched (takes preference over test and include)
+        // Best practices:
+        // - Use RegExp only in test and for filename matching
+        // - Use arrays of absolute paths in include and exclude
+
+        // - Try to avoid exclude and prefer include
+
+        // flags to apply these rules, even if they are overridden (advanced option)
+        loader: "babel-loader",
+        // the loader which should be applied, it'll be resolved relative to the context
+        // -loader suffix is no longer optional in webpack2 for clarity reasons
+        options: {
+          plugins: ["@babel/plugin-transform-react-jsx", "@babel/plugin-proposal-class-properties"],
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+
+        },
+        // see webpack 1 upgrade guide
+
+        // options for the loader
+      },
+    ],
+  },
+};
