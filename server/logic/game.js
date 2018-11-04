@@ -1,4 +1,4 @@
-const { send, emitter } = require("../network/interface");
+const { send, emitter, broadcast } = require("../network/interface");
 const actions = require("../network/actions");
 const registerUser = require("../actions/registerUser");
 
@@ -11,7 +11,18 @@ function randGenerator(digits) {
   return arr.join("");
 }
 
-emitter.on(actions.peerConnected, data => console.log(`piiizdec  coefdwe ${data.id}`));
+function generateRandPosition() {
+  return {
+    x: Math.round(Math.random() * 200),
+    y: Math.round(Math.random() * 200),
+  };
+}
+
+const state = { position: { x: 60, y: 60 } };
+
+emitter.on(actions.peerConnected, (msg) => {
+  broadcast(actions.setPosition, state.position);
+});
 
 emitter.on(actions.sessionEstablish, (msg) => {
   if (msg.data.sessionId === null || msg.data.sessionId === undefined) {
@@ -24,4 +35,13 @@ emitter.on(actions.userRegister, (msg) => {
     registerUser(msg.data).then(user => send(msg.id, actions.registerUser, user))
       .catch(error => send(msg.id, actions.error, error));
   }
+});
+
+emitter.on(actions.setPosition, (msg) => {
+
+  const position = state.position;
+  position.x = msg.data.x;
+  position.y = msg.data.y;
+
+  broadcast(actions.setPosition, position);
 });

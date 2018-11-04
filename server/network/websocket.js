@@ -6,7 +6,7 @@ function init() {
   let connectionCount = 0;
 
   const wss = new WebSocket.Server({
-    port: 8080,
+    port: 3000,
   });
 
   function addNewConnection(ws) {

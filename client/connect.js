@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:8080");
+const socket = new WebSocket("ws://localhost:3000");
 
 const id = window.sessionStorage.getItem("id");
 
@@ -24,3 +24,5 @@ socket.onmessage = (msg) => {
       console.log(msg);
   }
 };
+
+export default socket;

@@ -14,7 +14,6 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: "pre",
-
         // these are matching conditions, each accepting a regular expression or string
         // test and include have the same behavior, both must be matched
         // exclude must not be matched (takes preference over test and include)
@@ -36,6 +35,11 @@ module.exports = {
         // see webpack 1 upgrade guide
 
         // options for the loader
+      },
+      {
+        test: /\.css/,
+        loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
+
       },
     ],
   },
