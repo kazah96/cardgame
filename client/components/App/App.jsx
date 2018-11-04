@@ -1,6 +1,7 @@
 import style from './style.css';
 import React, { Component } from 'react';
 import { Header, Input, GameObject } from '../index';
+import SnakeGame from '../SnakeGame/SnakeGame.jsx';
 
 const user = { name: "poqer" };
 
@@ -16,7 +17,7 @@ const App = (props) => <div className={style.app}>
 
         <div onClick={() => props.sendMessage(state.value)}>SendMsg</div>
     </div>
-    <GameObject />
+    <SnakeGame />
 
 
 </div>

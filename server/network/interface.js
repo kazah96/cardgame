@@ -2,10 +2,9 @@ const EventEmmiter = require("events");
 
 const wss = require("../network/websocket");
 const actions = require("./actions");
-
+const filter = require("./filter");
 
 function send(id, type, msg) {
-  console.log("sendiq");
   if (wss.getConnection(id) === undefined) return;
 
   const message = JSON.stringify({
@@ -32,7 +31,15 @@ wss.on("connection", (ws) => {
   ws.on("close", () => myEmitter.emit(actions.peerDisconnected, { id: ws.id }));
   ws.on("message", (data) => {
     const parsedData = JSON.parse(data);
-    if (!Object.keys(actions).some(item => actions[item] === parsedData.type)) console.log("no such msg type");
+
+    if (!filter(ws, parsedData)) {
+      console.log("blocked unauthorized");
+      send(ws.id, "UNAUTHORIZED");
+      return;
+    }
+
+    if (!Object.keys(actions)
+      .some(item => actions[item] === parsedData.type)) console.log("no such msg type");
 
     const msg = { id: ws.id, data: parsedData.payload };
     myEmitter.emit(parsedData.type, msg);

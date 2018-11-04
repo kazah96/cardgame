@@ -4,5 +4,7 @@ module.exports = {
   sessionEstablish: "ESTABLISH_SESSION",
   userRegister: "USER_REGISTER",
   error: "ERROR",
-  setPosition: "SET_POSITION",
+  requireGame: "REQUIRE_GAME",
+  login: "LOGIN",
+  handshake: "HANDSHAKE",
 };

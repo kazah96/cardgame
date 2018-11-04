@@ -18,30 +18,3 @@ function generateRandPosition() {
   };
 }
 
-const state = { position: { x: 60, y: 60 } };
-
-emitter.on(actions.peerConnected, (msg) => {
-  broadcast(actions.setPosition, state.position);
-});
-
-emitter.on(actions.sessionEstablish, (msg) => {
-  if (msg.data.sessionId === null || msg.data.sessionId === undefined) {
-    send(msg.id, actions.sessionEstablish, { sessionId: randGenerator(20) });
-  }
-});
-
-emitter.on(actions.userRegister, (msg) => {
-  if (msg.data !== undefined) {
-    registerUser(msg.data).then(user => send(msg.id, actions.registerUser, user))
-      .catch(error => send(msg.id, actions.error, error));
-  }
-});
-
-emitter.on(actions.setPosition, (msg) => {
-
-  const position = state.position;
-  position.x = msg.data.x;
-  position.y = msg.data.y;
-
-  broadcast(actions.setPosition, position);
-});

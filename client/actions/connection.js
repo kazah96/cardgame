@@ -1,4 +1,4 @@
-import {emitAction} from './actions';
+import { emitAction } from './actions';
 
 export const webSocketConnectBegin = "WEBSOCKET_CONNECT_BEGIN";
 export const webSocketConnected = "WEBSOCKET_CONNECTED";
@@ -6,9 +6,11 @@ export const webSocketError = "WEBSOCKET_ERROR";
 
 let socket = undefined;
 
+const callbacks = [];
+
 export function connect(data) {
   return dispatch => {
-    if(socket) return;
+    if (socket) return;
 
     socket = new WebSocket("ws://localhost:3000");
     dispatch({ type: webSocketConnectBegin });
@@ -31,14 +33,25 @@ export function connect(data) {
 
     socket.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
-      console.log("recieved messatge");
-      console.log(msg);
-      emitAction(dispatch, message); 
+      console.log(message);
+
+      callbacks.forEach(callback => {
+        callback(message);
+      });
+
+      emitAction(dispatch, message);
     }
   }
 }
 
+export function onMessage(callback) {
+  callbacks.push(callback);
+}
+
 export function sendMessage(type, obj) {
+  console.log("sending");
+  console.log(type);
+  console.log(obj);
   return dispatch => {
     if (!socket) return;
 
