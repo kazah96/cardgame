@@ -41,7 +41,7 @@ wss.on("connection", (ws) => {
     if (!Object.keys(actions)
       .some(item => actions[item] === parsedData.type)) console.log("no such msg type");
 
-    const msg = { id: ws.id, data: parsedData.payload };
+    const msg = { socket: ws, data: parsedData.payload };
     myEmitter.emit(parsedData.type, msg);
   });
 });

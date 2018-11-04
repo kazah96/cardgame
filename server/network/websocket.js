@@ -10,6 +10,7 @@ function init() {
   });
 
   function addNewConnection(ws) {
+    console.log(connectionCount);
     let id = availableIds.pop();
     if (id === undefined) {
       id = connectionCount;

@@ -18,3 +18,6 @@ function generateRandPosition() {
   };
 }
 
+emitter.on(actions.login, (data) => {
+  console.log(data.socket.id);
+});

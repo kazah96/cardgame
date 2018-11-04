@@ -21,6 +21,7 @@ export function connect(data) {
         type: webSocketConnected,
         socket
       });
+
     };
 
     socket.onerror = (error) => {
@@ -41,6 +42,7 @@ export function connect(data) {
 
       emitAction(dispatch, message);
     }
+
   }
 }
 
@@ -48,15 +50,17 @@ export function onMessage(callback) {
   callbacks.push(callback);
 }
 
-export function sendMessage(type, obj) {
+function sendMessage(type, obj) {
   console.log("sending");
   console.log(type);
   console.log(obj);
   return dispatch => {
     if (!socket) return;
-
+    console.log(socket);
     const message = JSON.stringify({ type, payload: obj });
     socket.send(message);
   }
 
 }
+
+export { sendMessage };

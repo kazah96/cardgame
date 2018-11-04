@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./server/bin/www",
     "eslint": "node_modules/.bin/eslint ./ --fix",
-    "build": "webpack -w --config webpack.config.js"
+    "build": "webpack -w --config webpack.config.js",
+    "test": "mocha -- server/**/*.test.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -34,6 +35,7 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "assert": "^1.4.1",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "1.7.0",
     "css-loader": "^1.0.1",
@@ -48,6 +50,9 @@
     "eslint-plugin-react": "^7.11.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "lint-staged": "^8.0.0",
+    "mocha": "^5.2.0",
+    "redux-devtools-extension": "^2.13.5",
+    "sinon": "^7.1.1",
     "style-loader": "^0.23.1",
     "webpack-cli": "^3.1.2"
   }

@@ -3,6 +3,9 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import ReactDom from 'react-dom';
 import { App } from './components';
+import { sendMessage } from './actions/connection';
+
+window.sendMessage = sendMessage;
 
 class Root extends Component {
     render() {
