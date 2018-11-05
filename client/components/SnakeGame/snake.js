@@ -23,7 +23,7 @@ function initGame() {
 
 }
 
-keyPress(event, position) {
+function keyPress(event, position) {
     if (event.key === "ArrowUp") {
         position.y += 40;
         return position;

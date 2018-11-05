@@ -1,11 +1,18 @@
-import App from './App.jsx';
-import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
+import Header from './Header.jsx';
+import { connect } from 'react-redux';
+import { showLoginModal, logout } from '../../actions/login';
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        
+        user: state.currentUser
     }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+    return {
+        onLogin: () => dispatch(showLoginModal),
+        onLogout: () => dispatch(logout),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

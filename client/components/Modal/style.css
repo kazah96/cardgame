@@ -1,0 +1,13 @@
+.modal {
+    margin: 30vh auto;
+}
+
+.background {
+    background: rgba(36, 51, 37, 0.39);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:  100vw;
+    height: 100vh;
+    display: flex;
+}

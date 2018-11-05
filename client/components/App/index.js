@@ -6,7 +6,7 @@ import { sendMessage } from '../../actions/connection';
 
 const mapStateToProps = (state) => {
     return {
-
+        modal: state.modal.name
     }
 }
 

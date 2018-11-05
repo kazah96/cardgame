@@ -1,5 +1,6 @@
 const actions = require("./actions");
 const userTypes = require("./userTypes");
+const { makeNetworkMessage } = require("./utils");
 
 const levels = {
   anonymous: 0,
@@ -41,6 +42,6 @@ module.exports = function filterMiddleware({ ws, msg }) {
 
   if (connectionLevel >= msgLevel) return { ws, msg };
 
-  ws.send("UNAUTHORIZED");
+  ws.send(makeNetworkMessage({ type: actions.unauthorized }));
   return null;
 };

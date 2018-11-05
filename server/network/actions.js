@@ -10,4 +10,5 @@ module.exports = {
   loginFail: "LOGIN_FAIL",
   handshake: "HANDSHAKE",
   handshakeAccepted: "HANDSHAKE_ACCEPTED",
+  unauthorized: "UNAUTHORIZED",
 };

@@ -1,6 +1,7 @@
 const { anonymous } = require("./userTypes");
 const login = require("../logic/login");
 const actions = require("./actions");
+const { randGenerator, makeNetworkMessage } = require("./utils");
 
 const sessionArray = {};
 
@@ -10,24 +11,6 @@ function isSessionValid(session) {
     return true;
   }
   return false;
-}
-
-function send({ ws, type, msg }) {
-  const message = JSON.stringify({
-    type,
-    data: msg,
-  });
-
-  ws.send(message);
-}
-
-function randGenerator(digits) {
-  const symbols = "qwertyuiopasdfghjklzxcvbnm1234567890";
-  const arr = [];
-  for (let index = 0; index < digits; index += 1) {
-    arr.push(symbols[Math.round(Math.random() * symbols.length)]);
-  }
-  return arr.join("");
 }
 
 // TODO: COVER WIT TESTS
@@ -45,11 +28,11 @@ function sessionMiddleware({ ws, msg }) {
         ...sessionArray[msg.data.token],
       };
 
-      send({ ws, type: actions.handshakeAccepted });
+      ws.send(makeNetworkMessage({ type: actions.handshakeAccepted }));
       return { ws, msg };
     }
 
-    send({ ws, type: actions.handshakeRejected, msg: "token" });
+    ws.send(makeNetworkMessage({ type: actions.handshakeRejected, msg: "token" }));
     ws.session = { type: anonymous };
     return { ws, msg };
   }
@@ -68,10 +51,10 @@ function sessionMiddleware({ ws, msg }) {
           ...sessionArray[token],
         };
 
-        send({ ws, type: actions.loginSuccess, msg: { ...result, token } });
+        ws.send(makeNetworkMessage({ type: actions.loginSuccess, msg: { ...result, token } }));
       })
       .catch((error) => {
-        send({ ws, type: actions.loginFail, msg: { error } });
+        ws.send(makeNetworkMessage({ type: actions.loginFail, msg: { error } }));
       });
 
     return { ws, msg };

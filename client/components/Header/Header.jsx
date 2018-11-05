@@ -7,13 +7,13 @@ const Header = (props) => <div className={style.header}>
       <div className={style.name}>
         {props.user.name}
       </div>
-      <div className={style.exitButton}>
+      <div onClick={props.onLogout} className={style.exitButton}>
         Выйти
         </div>
     </React.Fragment>
       :
       <React.Fragment>
-        <div className={style.loginButton}>
+        <div onClick={props.onLogin} className={style.loginButton}>
           Войти
         </div>
       </React.Fragment>

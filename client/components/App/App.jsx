@@ -2,6 +2,8 @@ import style from './style.css';
 import React, { Component } from 'react';
 import { Header, Input, GameObject } from '../index';
 import SnakeGame from '../SnakeGame/SnakeGame.jsx';
+import Selector from '../Selector';
+import Modal from '../Modal';
 
 const user = { name: "poqer" };
 
@@ -17,7 +19,15 @@ const App = (props) => <div className={style.app}>
 
         <div onClick={() => props.sendMessage(state.value)}>SendMsg</div>
     </div>
-    <SnakeGame />
+    <Selector name={props.modal}>
+        <Modal name="ebala">
+            <div>asdasd</div>
+        </Modal>
+        <Modal name="unauthorized">
+            <div>UNAUTHORIZEEEEDDDDDDD</div>
+        </Modal>
+    </Selector>
+
 
 
 </div>
