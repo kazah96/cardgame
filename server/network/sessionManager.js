@@ -28,13 +28,21 @@ function sessionMiddleware({ ws, msg }) {
         ...sessionArray[msg.data.token],
       };
 
-      ws.send(makeNetworkMessage({ type: actions.handshakeAccepted }));
+      ws.send(makeNetworkMessage({ type: actions.handshakeAccepted, msg: ws.session }));
       return { ws, msg };
     }
 
     ws.send(makeNetworkMessage({ type: actions.handshakeRejected, msg: "token" }));
     ws.session = { type: anonymous };
     return { ws, msg };
+  }
+
+  if (msg.type === actions.logout) {
+    if (ws.session && ws.session.token) {
+      delete sessionArray[ws.session.token];
+      delete ws.session;
+      ws.session = { type: anonymous };
+    }
   }
 
   if (msg.type === actions.login) {

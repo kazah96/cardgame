@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
 import { connect as socketConnect } from '../../actions/connection';
 import { sendMessage } from '../../actions/connection';
+import { sendHandshake } from '../../actions/session';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,8 +13,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: () => dispatch(socketConnect()),
-        sendMessage: data => dispatch(sendMessage("BEST TYPE", { data }))
+        connectToServer: () => dispatch(socketConnect()),
+        sendMessage: data => dispatch(sendMessage("BEST TYPE", { data })),
+        sendHandshake: () => dispatch(sendHandshake()),
     }
 
 }

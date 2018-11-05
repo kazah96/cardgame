@@ -1,4 +1,5 @@
 import { emitAction } from './actions';
+import { sendHandshake } from './session';
 
 export const webSocketConnectBegin = "WEBSOCKET_CONNECT_BEGIN";
 export const webSocketConnected = "WEBSOCKET_CONNECTED";
@@ -17,6 +18,7 @@ export function connect(data) {
 
     console.log(socket);
     socket.onopen = () => {
+      dispatch(sendHandshake());
       dispatch({
         type: webSocketConnected,
         socket
@@ -46,7 +48,7 @@ export function connect(data) {
   }
 }
 
-export function onMessage(callback) {
+function onMessage(callback) {
   callbacks.push(callback);
 }
 
@@ -57,10 +59,10 @@ function sendMessage(type, obj) {
   return dispatch => {
     if (!socket) return;
     console.log(socket);
-    const message = JSON.stringify({ type, payload: obj });
+    const message = JSON.stringify({ type, data: obj });
     socket.send(message);
   }
 
 }
 
-export { sendMessage };
+export { sendMessage, onMessage };

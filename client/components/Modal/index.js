@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import style from './style.css';
+import { connect }  from "react-redux";
+import { closeModal } from "../../actions/modal";
+import Modal from "./Modal.jsx";
 
-const Modal = React.memo(props =>
-    <div className={style.background}>
-        <div className={style.modal}>
-            {props.children}
-        </div>
-    </div>
 
-);
+function mapDispatchToProps(dispatch) {
+    return {
+        onExit: () => dispatch(closeModal()),
+    }
+}
 
-export default Modal;
+export default connect(null, mapDispatchToProps)(Modal);

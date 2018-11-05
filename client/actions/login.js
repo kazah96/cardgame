@@ -1,5 +1,16 @@
-export function showLoginModal() {
+import { sendMessage } from "./connection";
+import { removeCurrentUser } from "./currentUser";
+
+export function login({ username, password }) {
     return dispatch => {
-        
+        dispatch(sendMessage("LOGIN", { username, password }));
+    }
+
+}
+
+export function logout() {
+    return dispatch => {
+        dispatch(sendMessage("LOGOUT"));
+        dispatch(removeCurrentUser());
     }
 }

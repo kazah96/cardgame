@@ -1,6 +1,6 @@
 import { webSocketConnectBegin, webSocketConnected, webSocketError } from "../actions/connection";
 
-export default function (state = {}, action) {
+export default function (state = { isConnected: false }, action) {
   switch (action.type) {
     case webSocketConnectBegin:
       return {
@@ -13,6 +13,7 @@ export default function (state = {}, action) {
       return {
         ...state,
         isConnecting: false,
+        isConnected: true,
         socket: action.socket,
         error: {}
       }

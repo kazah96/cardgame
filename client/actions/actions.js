@@ -1,4 +1,6 @@
 import { showModal } from "./modal";
+import { setCurrentUser } from "./currentUser";
+import { setHandshake } from "./session";
 
 export const actions = {
     "SHOW_ALERT": (dispatch, data) => {
@@ -11,17 +13,29 @@ export const actions = {
         dispatch({ type: "SET_POSITION", data });
     },
     "UNAUTHORIZED": (dispatch, data) => {
-        dispatch(showModal("unauthorized"));
+        dispatch(showModal("loginform"));
     },
     "SHOW_MODAL": (dispatch, data) => {
         dispatch(showModal(data.name, data.message));
-    }
+    },
+    "LOGIN_SUCCESS": (dispatch, data) => {
+        dispatch(setCurrentUser(data));
+        dispatch(setHandshake(data.token));
+    },
+    "HANDSHAKE_REJECTED": (dispatch, data) => {
+        dispatch(showModal("loginform"));
+    },
+    "HANDSHAKE_ACCEPTED": (dispatch, data) => {
+        dispatch(setCurrentUser(data));
+    }, 
+
 }
 
 export function emitAction(dispatch, message) {
     const action = actions[message.type];
 
     if (!action) {
+        console.log(message);
         console.log("No such action");
         return;
     }

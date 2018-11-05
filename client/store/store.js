@@ -5,12 +5,14 @@ import reducer from '../reducers/reducer';
 import connect from '../reducers/connection';
 import gameObject from '../reducers/gameObject';
 import modal from '../reducers/modal';
+import currentUser from "../reducers/currentUser";
 
 export default createStore(
     combineReducers({
         reducer,
         connect,
         gameObject,
-        modal
+        modal,
+        currentUser
     }),
     composeWithDevTools(applyMiddleware(reduxThunk)));

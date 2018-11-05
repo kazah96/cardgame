@@ -1,17 +1,18 @@
 import Header from './Header.jsx';
 import { connect } from 'react-redux';
-import { showLoginModal, logout } from '../../actions/login';
+import { showModal, closeModal } from '../../actions/modal';
+import { logout } from '../../actions/login';
 
 function mapStateToProps(state) {
     return {
-        user: state.currentUser
+        user: state.currentUser.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onLogin: () => dispatch(showLoginModal),
-        onLogout: () => dispatch(logout),
+        onLogin: () => dispatch(showModal("loginform")),
+        onLogout: () => dispatch(logout()),
     }
 }
 
