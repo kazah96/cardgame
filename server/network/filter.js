@@ -1,5 +1,5 @@
 const actions = require("./actions");
-const { session, userTypes } = require("./sessionManager");
+const userTypes = require("./userTypes");
 
 const levels = {
   anonymous: 0,
@@ -14,17 +14,18 @@ const filterTable = {
   [actions.peerConnected]: levels.anonymous,
   [actions.peerDisconnected]: levels.anonymous,
   [actions.login]: levels.anonymous,
+  [actions.userRegister]: levels.anonymous,
 };
 
-module.exports = (ws, msg) => {
+module.exports = function filterMiddleware({ ws, msg }) {
   let msgLevel = filterTable[msg.type];
   if (msgLevel === undefined) {
     msgLevel = defaultLevel;
   }
   let connectionLevel = 0;
 
-  const user = session(ws);
-  switch (user) {
+  const { type } = ws.session;
+  switch (type) {
     case userTypes.admin:
       connectionLevel = levels.admin;
       break;
@@ -38,7 +39,8 @@ module.exports = (ws, msg) => {
       connectionLevel = levels.anonymous;
   }
 
-  if (connectionLevel >= msgLevel) return true;
+  if (connectionLevel >= msgLevel) return { ws, msg };
 
-  return false;
+  ws.send("UNAUTHORIZED");
+  return null;
 };

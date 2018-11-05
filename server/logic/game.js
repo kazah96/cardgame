@@ -18,6 +18,8 @@ function generateRandPosition() {
   };
 }
 
-emitter.on(actions.login, (data) => {
-  console.log(data.socket.id);
+emitter.on(actions.userRegister, ({ ws, msg }) => {
+  registerUser({ ...msg.data })
+    .then(() => send(ws.id, actions.userRegister, { message: "REGISTERED" }))
+    .catch(error => send(ws.id, actions.error, { message: error }));
 });

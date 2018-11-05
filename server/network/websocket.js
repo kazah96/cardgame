@@ -32,8 +32,6 @@ function init() {
       removeConnection(ws);
     });
     addNewConnection(ws);
-
-    ws.on("message", data => console.log(data));
   });
 
   wss.getAllConnections = () => connections;
@@ -43,15 +41,4 @@ function init() {
   return wss;
 }
 
-const name = "websocketServer";
-
-function getInstance() {
-  if (global[name]) {
-    return global[name];
-  }
-
-  global[name] = init();
-  return global[name];
-}
-
-module.exports = getInstance();
+module.exports = init;

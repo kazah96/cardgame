@@ -1,55 +1,103 @@
 const EventEmmiter = require("events");
-
 const wss = require("../network/websocket");
 const actions = require("./actions");
-const filter = require("./filter");
+const sessionMiddleware = require("./sessionManager");
+const Middleware = require("./middleware");
+const makeEmitterMiddleware = require("./emitterMiddleware");
+const filterMiddleware = require("./filter");
 
-function send(id, type, msg) {
-  if (wss.getConnection(id) === undefined) return;
+class MessageEmitter extends EventEmmiter { }
 
-  const message = JSON.stringify({
-    type,
-    data: msg,
-  });
+class SocketInterface {
+  constructor(wss) {
+    this.wss = wss;
+    this.middlewareManager = new Middleware();
+    this.emitter = new MessageEmitter();
+    this.addMiddleware = this.addMiddleware.bind(this);
+    this.send = this.send.bind(this);
+    this.broadcast = this.broadcast.bind(this);
+    this.init = this.init.bind(this);
 
-  wss.getConnection(id).send(message);
+    this.init();
+  }
+
+  init() {
+    this.wss.on("connection", (ws) => {
+      this.middlewareManager.exec({
+        ws,
+        msg: {
+          type: actions.peerConnected,
+          data: {},
+        },
+      });
+      ws.on("close", () => this.middlewareManager.exec({
+        ws,
+        msg: {
+          type: actions.peerDisconnected,
+          data: {},
+        },
+      }));
+      ws.on("message", (data) => {
+        const parsedData = JSON.parse(data);
+        this.middlewareManager
+          .exec(
+            {
+              ws,
+              msg: {
+                type: parsedData.type,
+                data: { ...parsedData.data },
+              },
+            },
+          );
+      });
+    });
+
+    this.middlewareManager.addMiddleware(makeEmitterMiddleware(this.emitter, this.send));
+  }
+
+  addMiddleware(middleware) {
+    this.middlewareManager.addMiddleware(middleware);
+  }
+
+  broadcast(type, data) {
+    this.wss.getAllConnections().forEach((connection) => {
+      this.send(connection.id, type, data);
+    });
+  }
+
+  send(id, type, msg) {
+    if (this.wss.getConnection(id) === undefined) return;
+    const message = JSON.stringify({
+      type,
+      data: msg,
+    });
+
+    this.wss.getConnection(id).send(message);
+  }
 }
 
-function broadcast(type, data) {
-  wss.getAllConnections().forEach((connection) => {
-    send(connection.id, type, data);
-  });
+function initInterface() {
+  const webSocket = wss();
+  const socketInterface = new SocketInterface(webSocket);
+
+  // middlewares, в обратном порядке
+  socketInterface.addMiddleware(filterMiddleware);
+  socketInterface.addMiddleware(sessionMiddleware);
+
+
+  return socketInterface;
 }
 
+function getInstance() {
+  const name = "webSocketInterface";
+  let instance = global[name];
 
-class MyEmitter extends EventEmmiter { }
+  if (instance === undefined) {
+    instance = initInterface();
+    global[name] = instance;
+  }
 
-const myEmitter = new MyEmitter();
+  return instance;
+}
 
-wss.on("connection", (ws) => {
-  myEmitter.emit(actions.peerConnected, { id: ws.id });
-  ws.on("close", () => myEmitter.emit(actions.peerDisconnected, { id: ws.id }));
-  ws.on("message", (data) => {
-    const parsedData = JSON.parse(data);
-
-    if (!filter(ws, parsedData)) {
-      console.log("blocked unauthorized");
-      send(ws.id, "UNAUTHORIZED", { x: 4 });
-      return;
-    }
-
-    if (!Object.keys(actions)
-      .some(item => actions[item] === parsedData.type)) console.log("no such msg type");
-
-    const msg = { socket: ws, data: parsedData.payload };
-    myEmitter.emit(parsedData.type, msg);
-  });
-});
-
-// DEBUGGING
-global.send = send;
-global.broadcast = broadcast;
-
-exports.broadcast = broadcast;
-exports.send = send;
-exports.emitter = myEmitter;
+module.exports = getInstance();

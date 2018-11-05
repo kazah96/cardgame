@@ -1,15 +1,25 @@
 /* eslint-disable */
-const { session, userTypes } = require("../sessionManager");
+const session = require("../sessionManager");
+const userTypes = require("../userTypes");
+const assert = require("assert");
 
-it("should return anonymous", () => {
-  const socket = {
-    id: 4,
-  };
-  const expectedResult = userTypes.anonymous;
+describe("session middleware", () => {
+  it("should return anonymous", () => {
+    const recievedObj = {
+      ws: {},
+      msg: {}
+    }
 
-  const result = session(socket);
+    const expectedResult = {
+      ws: { session: { type: userTypes.anonymous } },
+      msg: {}
+    }
 
-  if (result !== expectedResult) {
-    throw new Error(`Expected ${expectedResult} but got ${result}`);
-  }
+
+    const result = session(recievedObj);
+    assert.deepStrictEqual(expectedResult, result);
+
+  });
+
 });
+
