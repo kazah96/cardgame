@@ -17,11 +17,14 @@ const filterTable = {
 };
 
 module.exports = (ws, msg) => {
-  const msgLevel = filterTable[msg.type] || defaultLevel;
+  let msgLevel = filterTable[msg.type];
+  if (msgLevel === undefined) {
+    msgLevel = defaultLevel;
+  }
   let connectionLevel = 0;
 
   const user = session(ws);
-  switch (user.type) {
+  switch (user) {
     case userTypes.admin:
       connectionLevel = levels.admin;
       break;

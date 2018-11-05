@@ -34,7 +34,7 @@ wss.on("connection", (ws) => {
 
     if (!filter(ws, parsedData)) {
       console.log("blocked unauthorized");
-      send(ws.id, "UNAUTHORIZED");
+      send(ws.id, "UNAUTHORIZED", { x: 4 });
       return;
     }
 

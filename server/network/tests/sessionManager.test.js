@@ -1,4 +1,5 @@
-const { session, userTypes } = require("./sessionManager");
+/* eslint-disable */
+const { session, userTypes } = require("../sessionManager");
 
 it("should return anonymous", () => {
   const socket = {
