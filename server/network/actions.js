@@ -6,5 +6,8 @@ module.exports = {
   error: "ERROR",
   requireGame: "REQUIRE_GAME",
   login: "LOGIN",
+  loginSuccess: "LOGIN_SUCCESS",
+  loginFail: "LOGIN_FAIL",
   handshake: "HANDSHAKE",
+  handshakeAccepted: "HANDSHAKE_ACCEPTED",
 };

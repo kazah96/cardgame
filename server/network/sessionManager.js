@@ -1,5 +1,6 @@
-const { admin, anonymous, user } = require("./userTypes");
+const { anonymous } = require("./userTypes");
 const login = require("../logic/login");
+const actions = require("./actions");
 
 const sessionArray = {};
 
@@ -10,11 +11,6 @@ function isSessionValid(session) {
   }
   return false;
 }
-
-// function login({ username, password }) {
-//   if (username === "pok" && password === "123") return { username, type: user };
-//   return undefined;
-// }
 
 function send({ ws, type, msg }) {
   const message = JSON.stringify({
@@ -34,10 +30,6 @@ function randGenerator(digits) {
   return arr.join("");
 }
 
-function setSession({ ws, token, type }) {
-
-}
-
 // TODO: COVER WIT TESTS
 function sessionMiddleware({ ws, msg }) {
   const { session } = ws;
@@ -46,23 +38,23 @@ function sessionMiddleware({ ws, msg }) {
     ws.session = { type: anonymous };
   }
 
-  if (msg.type === "HANDSHAKE") {
+  if (msg.type === actions.handshake) {
     if (msg.data.token && sessionArray[msg.data.token]) {
       ws.session = {
         token: msg.data.token,
         ...sessionArray[msg.data.token],
       };
 
-      send({ ws, type: "HANDSHAKE_ACCEPTED", msg: "token" });
+      send({ ws, type: actions.handshakeAccepted });
       return { ws, msg };
     }
 
-    send({ ws, type: "HANDSHAKE_REJECTED", msg: "token" });
+    send({ ws, type: actions.handshakeRejected, msg: "token" });
     ws.session = { type: anonymous };
     return { ws, msg };
   }
 
-  if (msg.type === "LOGIN") {
+  if (msg.type === actions.login) {
     login({ username: msg.data.username, password: msg.data.password })
       .then((result) => {
         const token = randGenerator(12);
@@ -76,10 +68,10 @@ function sessionMiddleware({ ws, msg }) {
           ...sessionArray[token],
         };
 
-        send({ ws, type: "LOGIN_SUCCESS", msg: { ...result, token } });
+        send({ ws, type: actions.loginSuccess, msg: { ...result, token } });
       })
       .catch((error) => {
-        send({ ws, type: "LOGIN_FAIL", msg: { error } });
+        send({ ws, type: actions.loginFail, msg: { error } });
       });
 
     return { ws, msg };

@@ -1,5 +1,5 @@
 const EventEmmiter = require("events");
-const wss = require("../network/websocket");
+const WebSocket = require("../network/websocket");
 const actions = require("./actions");
 const sessionMiddleware = require("./sessionManager");
 const Middleware = require("./middleware");
@@ -77,13 +77,12 @@ class SocketInterface {
 }
 
 function initInterface() {
-  const webSocket = wss();
+  const webSocket = WebSocket();
   const socketInterface = new SocketInterface(webSocket);
 
   // middlewares, в обратном порядке
   socketInterface.addMiddleware(filterMiddleware);
   socketInterface.addMiddleware(sessionMiddleware);
-
 
   return socketInterface;
 }
