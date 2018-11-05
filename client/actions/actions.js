@@ -1,6 +1,7 @@
 import { showModal } from "./modal";
 import { setCurrentUser } from "./currentUser";
 import { setHandshake } from "./session";
+import { setUsersCount } from "./stats";
 
 export const actions = {
     "SHOW_ALERT": (dispatch, data) => {
@@ -27,8 +28,10 @@ export const actions = {
     },
     "HANDSHAKE_ACCEPTED": (dispatch, data) => {
         dispatch(setCurrentUser(data));
-    }, 
-
+    },
+    "USERS_COUNT": (dispatch, data) => {
+        dispatch(setUsersCount(data.users));
+    },
 }
 
 export function emitAction(dispatch, message) {

@@ -7,7 +7,8 @@ import { sendHandshake } from '../../actions/session';
 
 const mapStateToProps = (state) => {
     return {
-        modal: state.modal.name
+        modal: state.modal.name,
+        users: state.stats.users
     }
 }
 

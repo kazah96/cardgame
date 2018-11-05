@@ -20,7 +20,10 @@ class App extends React.Component {
         <Header />
       </div>
       <div>
-        Users online: { props.usersOnline }
+        Users online: {props.users.map((item, key) =>
+          <div key={key}>
+            {item.username}
+          </div>)}
       </div>
 
       <Selector name={props.modal}>

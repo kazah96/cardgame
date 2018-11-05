@@ -42,6 +42,6 @@ module.exports = function filterMiddleware({ ws, msg }) {
 
   if (connectionLevel >= msgLevel) return { ws, msg };
 
-  ws.send(makeNetworkMessage({ type: actions.unauthorized }));
+  ws.emitSend(makeNetworkMessage({ type: actions.unauthorized }));
   return null;
 };

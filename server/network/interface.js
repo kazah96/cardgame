@@ -8,11 +8,43 @@ const filterMiddleware = require("./filter");
 
 class MessageEmitter extends EventEmmiter { }
 
+
+function outEmitterMiddleware(emitter) {
+  return function emit({ ws, msg }) {
+    const message = { ws, msg };
+
+    emitter.emit(msg.type, message);
+
+    return { ws, msg };
+  };
+}
+
+function makeEmitSend(...middleware) {
+  const middlewareManager = new Middleware();
+
+  middleware.forEach((element) => {
+    middlewareManager.addMiddleware(element);
+  });
+
+  return function send(type, msg) {
+
+    const result = middlewareManager.exec({ ws: this, msg: { type, msg } });
+    const message = JSON.stringify({
+      type: result.msg.type,
+      data: result.msg.msg,
+    });
+
+    this.send(message);
+  };
+}
+
 class SocketInterface {
   constructor(wss) {
     this.wss = wss;
     this.middlewareManager = new Middleware();
     this.emitter = new MessageEmitter();
+    this.outEmitter = new MessageEmitter();
+
     this.addMiddleware = this.addMiddleware.bind(this);
     this.send = this.send.bind(this);
     this.broadcast = this.broadcast.bind(this);
@@ -23,6 +55,8 @@ class SocketInterface {
 
   init() {
     this.wss.on("connection", (ws) => {
+      ws.emitSend = makeEmitSend(outEmitterMiddleware(this.outEmitter));
+
       this.middlewareManager.exec({
         ws,
         msg: {

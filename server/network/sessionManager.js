@@ -28,11 +28,11 @@ function sessionMiddleware({ ws, msg }) {
         ...sessionArray[msg.data.token],
       };
 
-      ws.send(makeNetworkMessage({ type: actions.handshakeAccepted, msg: ws.session }));
+      ws.emitSend(actions.handshakeAccepted, ws.session);
       return { ws, msg };
     }
 
-    ws.send(makeNetworkMessage({ type: actions.handshakeRejected, msg: "token" }));
+    ws.emitSend(actions.handshakeRejected, "token");
     ws.session = { type: anonymous };
     return { ws, msg };
   }
@@ -59,10 +59,10 @@ function sessionMiddleware({ ws, msg }) {
           ...sessionArray[token],
         };
 
-        ws.send(makeNetworkMessage({ type: actions.loginSuccess, msg: { ...result, token } }));
+        ws.emitSend(actions.loginSuccess, { ...result, token });
       })
       .catch((error) => {
-        ws.send(makeNetworkMessage({ type: actions.loginFail, msg: { error } }));
+        ws.emitSend(actions.loginFail, { error });
       });
 
     return { ws, msg };

@@ -6,6 +6,7 @@ import connect from '../reducers/connection';
 import gameObject from '../reducers/gameObject';
 import modal from '../reducers/modal';
 import currentUser from "../reducers/currentUser";
+import stats from "../reducers/stats";
 
 export default createStore(
     combineReducers({
@@ -13,6 +14,7 @@ export default createStore(
         connect,
         gameObject,
         modal,
-        currentUser
+        currentUser,
+        stats,
     }),
     composeWithDevTools(applyMiddleware(reduxThunk)));
