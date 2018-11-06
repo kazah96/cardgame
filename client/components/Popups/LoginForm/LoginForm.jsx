@@ -20,16 +20,16 @@ class LoginForm extends Component {
       <Input
         className={style.input}
         onChange={value => this.setState({ username: value })}
-        placeholder="name" />
+        placeholder="Имя" />
 
       <Input
         className={style.input}
         onChange={value => this.setState({ password: value })}
-        placeholder="password" />
+        placeholder="Пароль" />
 
       <Button
         className={style.button}
-        name="ASdsads"
+        name="Войти"
         onClick={() => this.props.onClick({ ...this.state })} />
 
 

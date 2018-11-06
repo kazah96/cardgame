@@ -12,7 +12,7 @@ const callbacks = [];
 export function connect(data) {
   return dispatch => {
     if (socket) return;
-    console.log(window.location);
+
     socket = new WebSocket(`ws://${window.location.hostname}:3000`);
     dispatch({ type: webSocketConnectBegin });
 
@@ -22,7 +22,6 @@ export function connect(data) {
         type: webSocketConnected,
         socket
       });
-
     };
 
     socket.onerror = (error) => {
@@ -31,7 +30,6 @@ export function connect(data) {
         error
       })
     };
-
 
     socket.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
@@ -42,7 +40,6 @@ export function connect(data) {
 
       emitAction(dispatch, message);
     }
-
   }
 }
 
@@ -51,12 +48,8 @@ function onMessage(callback) {
 }
 
 function sendMessage(type, obj) {
-  console.log("sending");
-  console.log(type);
-  console.log(obj);
   return dispatch => {
     if (!socket) return;
-    console.log(socket);
     const message = JSON.stringify({ type, data: obj });
     socket.send(message);
   }

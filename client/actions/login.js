@@ -5,7 +5,6 @@ export function login({ username, password }) {
     return dispatch => {
         dispatch(sendMessage("LOGIN", { username, password }));
     }
-
 }
 
 export function logout() {
