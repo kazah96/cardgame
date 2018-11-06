@@ -1,35 +1,39 @@
 import style from './style.css';
 import React, { Component } from 'react';
 import Input from '../../Input';
+import { Button } from '../../index';
 
 class LoginForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      name: '',
+      username: '',
       password: '',
     }
   }
 
   render() {
 
-    
+
     return <div className={style.container}>
       <Input
         className={style.input}
-        onChange={value => this.setState({ name: value })}
+        onChange={value => this.setState({ username: value })}
         placeholder="name" />
+
       <Input
         className={style.input}
         onChange={value => this.setState({ password: value })}
         placeholder="password" />
 
-      <div className={style.submit} onClick={() =>
-        this.props.onClick({ username: this.state.name, password: this.state.password })}
-      >
-        SUBMIT
-      </div>
+      <Button
+        className={style.button}
+        name="ASdsads"
+        onClick={() => this.props.onClick({ ...this.state })} />
+
+
+
     </div>
   }
 }

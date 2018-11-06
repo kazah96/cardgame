@@ -1,41 +1,22 @@
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
-.input {
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-.button {
-    margin-top: 20px;
-}
-
 .submit {
-    cursor: pointer;
-    border: 2px black solid;
-    margin: auto;
-    margin-top: auto;
-    margin-top: 20px;
-    padding: 13px;
-
     font-family: sans-serif;
     font-weight: 200;
     text-align: center;
+    padding: 10px;
     background: #FFAF45;
     border-color: gray;
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
     font-size: 14px;
+
+
     transition-property: background-color;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
-    display: flex;
-    align-content: center;
-    align-items: center;
+
 }
+
 .submit:hover
 {
     background-color: #FFD399;

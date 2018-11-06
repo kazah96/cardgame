@@ -1,7 +1,7 @@
 import style from './style.css';
 import React, { Component } from 'react';
 import cn from "classnames/bind"
-import { Input } from '..';
+import { Input, Button } from '..';
 
 class Chat extends Component {
   constructor() {
@@ -31,16 +31,20 @@ class Chat extends Component {
             selected: this.state.selected === key
           })}
         >
-          {item.username} 
+          {item.username}
           <span className={style.info}>[{item.id}] {item.id === props.id ? " (Это вы)" : ""}</span>
         </div>)}
       </div>
       <div className={style.message}>
         <Input onChange={value => this.setState({ message: value })} />
-        <div
+
+
+        <Button
+          name="Отправить"
           className={style.submit}
-          onClick={() => props.sendMessage({ id: this.state.selected, message: this.state.message })}>Отправить
-        </div>
+          onClick={() => props.sendMessage({ id: this.state.selected, message: this.state.message })} />
+
+
       </div>
     </div>
   }

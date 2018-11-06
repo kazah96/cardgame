@@ -9,6 +9,7 @@ import GameField from './GameField';
 import Chat from './Chat';
 import NewMessage from './Popups/NewMessage';
 import RegistrationForm from './Popups/RegistrationForm';
+import Button from '../components/Button';
 
 export {
     App,
@@ -22,4 +23,5 @@ export {
     Chat,
     NewMessage,
     RegistrationForm,
+    Button,
 };

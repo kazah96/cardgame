@@ -8,10 +8,9 @@ class Input extends Component {
         this.state = {
             value: ''
         }
-
     }
 
-    onChange = (event) => {
+onChange = (event) => {
         const value = event.target.value;
         this.setState({ value }, () =>
             this.props.onChange(value)
@@ -21,6 +20,7 @@ class Input extends Component {
     render() {
         const ss = this.props.className;
         const cx = cn.bind({...style, ss});
+        
         return <input className={cx({ input: true, ss: true })}
             value={this.state.value}
             onChange={event => this.onChange(event)}

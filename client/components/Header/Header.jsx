@@ -1,5 +1,6 @@
 import style from './style.css';
 import React, { Component } from 'react';
+import { Button } from '..';
 
 const Header = (props) => <div className={style.header}>
   {
@@ -7,19 +8,16 @@ const Header = (props) => <div className={style.header}>
       <div className={style.name}>
         {props.user.username}
       </div>
-      <div onClick={props.onLogout} className={style.loginButton}>
-        Выйти
-        </div>
+
+      <Button name="Выйти" onClick={props.onLogout} className={style.loginButton } />
+
     </React.Fragment>
-      :
+    :
       <React.Fragment>
-        <div onClick={props.onLogin} className={style.loginButton}>
-          Войти
-        </div>
-        <div onClick={props.onRegister} className={style.loginButton}>
-          Зарегистрироваться
-        </div>
-      </React.Fragment>
+          <Button name="Войти" onClick={props.onLogin} className={style.loginButton} />
+          <Button name="Зарегистрироваться" onClick={props.onRegister} className={style.loginButton} />
+
+  </React.Fragment>
   }
 
 </div>

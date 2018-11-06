@@ -46,21 +46,3 @@
     margin-right: 10px;
 }
 
-.loginButton:hover
-{
-    background-color: #FFD399;
-
-    font-weight: 500;
-    color: rgb(51, 71, 133);
-    border-width: 1px;
-    border-style:dashed;
-}
-
-.loginButton:active
-{
-    font-weight: 500;
-    color: rgb(139, 61, 109);
-    border-width: 1px;
-   
-}
-
