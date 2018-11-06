@@ -1,17 +1,20 @@
-const { send, outEmitter, emitter, broadcast } = require("../network/interface");
+const {
+  send, outEmitter, emitter, broadcast,
+} = require("../network/interface");
+
 const actions = require("../network/actions");
 const registerUser = require("../actions/registerUser");
 const userTypes = require("../network/userTypes");
 
 
-function randGenerator(digits) {
-  const symbols = "qwertyuiopasdfghjklzxcvbnm1234567890";
-  const arr = [];
-  for (let index = 0; index < digits; index += 1) {
-    arr.push(symbols[Math.round(Math.random() * symbols.length)]);
-  }
-  return arr.join("");
-}
+// function randGenerator(digits) {
+//   const symbols = "qwertyuiopasdfghjklzxcvbnm1234567890";
+//   const arr = [];
+//   for (let index = 0; index < digits; index += 1) {
+//     arr.push(symbols[Math.round(Math.random() * symbols.length)]);
+//   }
+//   return arr.join("");
+// }
 
 function randColor() {
   const symbols = "ABCDF1234567890";
@@ -74,7 +77,12 @@ emitter.on(actions.peerDisconnected, ({ ws }) => {
 emitter.on(actions.sendMessageToUser, ({ ws, msg }) => {
   const conn = connections[msg.data.id];
   const date = Date.now();
-  if (conn) send(msg.data.id, actions.showMessage, { message: msg.data.message, sender: ws.session.username, date });
+
+  if (conn) {
+    send(msg.data.id,
+      actions.showMessage,
+      { message: msg.data.message, sender: ws.session.username, date });
+  }
 });
 
 emitter.on(actions.setMyPosition, ({ ws, msg }) => {
