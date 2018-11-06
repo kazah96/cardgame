@@ -75,7 +75,7 @@ class GameField extends Component {
             style={{ background: `#${user.color}` || 'red' }}>
           </div>
           <div className={style.text}>
-            {user.username} ID: {user.id}
+            {user.id}
           </div>
 
         </div>

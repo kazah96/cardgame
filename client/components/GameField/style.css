@@ -31,13 +31,12 @@
 
 
 .text {
-    display: none;
    position: absolute;
-   top: 27px;
+   
    font-size: smaller;
    font-family: sans-serif;
-   color: #0d63b952;
-   left: 6px;
+   color: #0d63b9;
+
 }
 
 @keyframes animate{

@@ -31,7 +31,8 @@ class Chat extends Component {
             selected: this.state.selected === key
           })}
         >
-          {item.username} {item.id === props.id ? " (Это вы)" : ""}
+          {item.username} 
+          <span className={style.info}>[{item.id}] {item.id === props.id ? " (Это вы)" : ""}</span>
         </div>)}
       </div>
       <div className={style.message}>
