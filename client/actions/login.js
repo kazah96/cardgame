@@ -14,3 +14,9 @@ export function logout() {
         dispatch(removeCurrentUser());
     }
 }
+
+export function registerUser({ username, password, year }) {
+    return dispatch => {
+        dispatch(sendMessage("USER_REGISTER", {username, password, year}));
+    }
+}

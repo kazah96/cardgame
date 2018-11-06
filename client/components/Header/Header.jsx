@@ -16,6 +16,9 @@ const Header = (props) => <div className={style.header}>
         <div onClick={props.onLogin} className={style.loginButton}>
           Войти
         </div>
+        <div onClick={props.onRegister} className={style.loginButton}>
+          Зарегистрироваться
+        </div>
       </React.Fragment>
   }
 

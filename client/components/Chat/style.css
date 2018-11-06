@@ -1,7 +1,63 @@
 .container {
+    height: 100%;
 
+    display: flex;
+    
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .selected {
-    background: blue;
+    background-color: rgb(196, 169, 169);
+    border-radius: 20px;
+}
+
+.online{
+    font-size: 20px;
+    color: rgb(41, 59, 86);
+}
+
+.userList{
+    color: rgb(41, 59, 86);
+}
+
+.userItem{
+    margin-top:2px;
+padding:5px;
+box-sizing: border-box;
+}
+
+.userItem:hover{
+    background-color: rgb(196, 169, 169);
+    border-radius: 20px;
+}
+
+.submit {
+    cursor: pointer;
+    border: 2px black solid;
+
+    margin: 5px;
+
+
+    font-family: sans-serif;
+    font-weight: 200;
+    text-align: center;
+
+    background: #FFAF45;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+
+    font-size: 14px;
+    transition-property: background-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+
+}
+
+.message{
+    margin-top: auto;
+ 
 }

@@ -13,6 +13,7 @@ function mapDispatchToProps(dispatch) {
     return {
         onLogin: () => dispatch(showModal("loginform")),
         onLogout: () => dispatch(logout()),
+        onRegister: () => dispatch(showModal("regform")),
     }
 }
 

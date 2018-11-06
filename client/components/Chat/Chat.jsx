@@ -21,7 +21,7 @@ class Chat extends Component {
     const cx = cn.bind(style);
 
     return <div className={style.container}>
-      <div>Онлайн</div>
+      <div className={style.online}>Онлайн:</div>
       <div className={style.userList}>
         {props.users && props.users.map((item, key) => <div
           onClick={() => this.onselect(key)}
@@ -31,7 +31,7 @@ class Chat extends Component {
             selected: this.state.selected === key
           })}
         >
-          {item.username}
+          {item.username} {item.id === props.id ? " (Это вы)" : ""}
         </div>)}
       </div>
       <div className={style.message}>

@@ -1,6 +1,6 @@
 import style from './style.css';
 import React from 'react';
-import { Header, Input, LoginForm, Selector, GameField, Chat, NewMessage } from '../index';
+import { Header, Input, LoginForm, Selector, GameField, Chat, NewMessage, RegistrationForm } from '../index';
 import Modal from '../Modal';
 
 class App extends React.Component {
@@ -40,6 +40,9 @@ class App extends React.Component {
         </Modal>
         <Modal name="showmessage">
           <NewMessage />
+        </Modal>
+        <Modal name="regform">
+          <RegistrationForm />
         </Modal>
       </Selector>
     </div>

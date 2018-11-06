@@ -2,13 +2,14 @@ import style from './style.css';
 import React, { Component } from 'react';
 import Input from '../../Input';
 
-class LoginForm extends Component {
+class RegistrationForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      name: '',
+      username: '',
       password: '',
+      year: '',
     }
   }
 
@@ -18,15 +19,19 @@ class LoginForm extends Component {
     return <div className={style.container}>
       <Input
         className={style.input}
-        onChange={value => this.setState({ name: value })}
+        onChange={value => this.setState({ username: value })}
         placeholder="name" />
       <Input
         className={style.input}
         onChange={value => this.setState({ password: value })}
         placeholder="password" />
+      <Input
+        className={style.input}
+        onChange={value => this.setState({ year: value })}
+        placeholder="year" />
 
       <div className={style.submit} onClick={() =>
-        this.props.onClick({ username: this.state.name, password: this.state.password })}
+        this.props.onClick({ ...this.state})}
       >
         SUBMIT
       </div>
@@ -34,4 +39,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default RegistrationForm;

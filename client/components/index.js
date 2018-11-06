@@ -8,7 +8,7 @@ import LoginForm from './Popups/LoginForm';
 import GameField from './GameField';
 import Chat from './Chat';
 import NewMessage from './Popups/NewMessage';
-
+import RegistrationForm from './Popups/RegistrationForm';
 
 export {
     App,
@@ -21,4 +21,5 @@ export {
     GameField,
     Chat,
     NewMessage,
+    RegistrationForm,
 };

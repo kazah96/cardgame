@@ -1,25 +1,32 @@
 .app {
-    background: #2c4647;
     width: 80vw;
     min-width: 500px;
     margin: 0 auto;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+
+    background: rgb(221, 204, 207);
+    
+
+    border-top-width: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+    font-weight: 80;  
 }
 
 body {
-    background: #311f22;
+    margin: 0px;
+    padding: 0px;
 
+      background-color:rgba(77, 99, 132, 1);
 }
-
 .content {
     display: flex;
     min-height: 500px;
 }
 
 .leftPanel{
-    width: 220px
+    width: 220px;
+    border-right: 2px solid #f6f6f6;
 }
 
 .header {

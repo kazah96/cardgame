@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import cn from 'classnames/bind';
+import style from './style.css';
 
 class Input extends Component {
     constructor() {
@@ -17,7 +19,9 @@ class Input extends Component {
     }
 
     render() {
-        return <input className={this.props.className}
+        const ss = this.props.className;
+        const cx = cn.bind({...style, ss});
+        return <input className={cx({ input: true, ss: true })}
             value={this.state.value}
             onChange={event => this.onChange(event)}
             placeholder={this.props.placeholder}

@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: end;
-    background: #4a4546;
+    background: rgb(196, 169, 169);;
 
     height: 40px;
     border-bottom: #ecece3 2px solid;
@@ -13,16 +13,50 @@
 
 }
 
-.loginButton {
-    cursor: pointer;
-    border: 2px black solid;
-    border-radius: 5px;
-    background: rgb(200, 206, 212);
-    padding: 13px;
+.name {
+    font-size: 20px;
 
+    align-self: center;
+    
+    margin-right: 20px;
+    
+    color: rgb(41, 59, 86);;
+}
+
+.loginButton {
+    font-family: sans-serif;
+    font-weight: 200;
+    text-align: center;
+    padding: 20px;
+    background: #FFAF45;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition-property: background-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
     display: flex;
-    
     align-content: center;
-    
     align-items: center;
 }
+
+.loginButton:hover
+{
+    background-color: #FFD399;
+
+    font-weight: 500;
+    color: rgb(51, 71, 133);
+    border-width: 1px;
+    border-style:dashed;
+}
+
+.loginButton:active
+{
+    font-weight: 500;
+    color: rgb(139, 61, 109);
+    border-width: 1px;
+   
+}
+

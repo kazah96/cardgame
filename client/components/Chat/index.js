@@ -5,6 +5,7 @@ import { sendMessageToUser } from "../../actions/chat";
 function mapStateToProps(state) {
         return {
             users: state.stats.users,
+            id: state.currentUser.user.id
         }
     }
 
