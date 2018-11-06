@@ -1,11 +1,25 @@
 .app {
-    background: #70c1c6;
-    width: 700px;
-    height: 700px;
-    border-radius: 20px;
-    border-style: dotted;
+    background: #2c4647;
+    width: 80vw;
+    min-width: 500px;
+    margin: 0 auto;
+    border-style: solid;
     border-color: black;
-    border-width: 3px;
+    border-width: 1px;
+}
+
+body {
+    background: #311f22;
+
+}
+
+.content {
+    display: flex;
+    min-height: 500px;
+}
+
+.leftPanel{
+    width: 220px
 }
 
 .header {

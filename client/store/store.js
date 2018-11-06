@@ -7,6 +7,7 @@ import gameObject from '../reducers/gameObject';
 import modal from '../reducers/modal';
 import currentUser from "../reducers/currentUser";
 import stats from "../reducers/stats";
+import chat from "../reducers/chat";
 
 export default createStore(
     combineReducers({
@@ -16,5 +17,6 @@ export default createStore(
         modal,
         currentUser,
         stats,
+        chat,
     }),
     composeWithDevTools(applyMiddleware(reduxThunk)));

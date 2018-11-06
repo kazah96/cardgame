@@ -1,0 +1,21 @@
+.container{
+
+}
+.header{
+    font-size: 40px;
+    color:white;
+}
+.message{
+    color: #e3e8f1;
+font-size: 22px;
+margin-top: 10px;
+}
+.sender{
+    color: #e0e1e4ad;
+    font-size: 16px;
+}
+.footer{
+    color: #84868bad;
+    font-size: 16px;
+    margin-top: 10px;
+}

@@ -28,7 +28,7 @@ function sessionMiddleware({ ws, msg }) {
         ...sessionArray[msg.data.token],
       };
 
-      ws.emitSend(actions.handshakeAccepted, ws.session);
+      ws.emitSend(actions.handshakeAccepted, { ...ws.session, id: ws.id });
       return { ws, msg };
     }
 
@@ -59,7 +59,7 @@ function sessionMiddleware({ ws, msg }) {
           ...sessionArray[token],
         };
 
-        ws.emitSend(actions.loginSuccess, { ...result, token });
+        ws.emitSend(actions.loginSuccess, { ...result, token, id: ws.id });
       })
       .catch((error) => {
         ws.emitSend(actions.loginFail, { error });

@@ -1,0 +1,51 @@
+.container {
+    background: rgb(32, 32, 32);
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.objectPos {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transition: all 0.5s ease;
+    display: flex;
+
+}
+
+.gameObject{
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgb(178, 122, 180);
+    display: flex;
+    animation: animate 1s linear infinite both;
+    border: 2px dashed white;
+    box-shadow: 0 0 8px 3px goldenrod;
+
+}
+
+.player {}
+
+
+.text {
+    display: none;
+   position: absolute;
+   top: 27px;
+   font-size: smaller;
+   font-family: sans-serif;
+   color: #0d63b952;
+   left: 6px;
+}
+
+@keyframes animate{
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg)
+       }
+}

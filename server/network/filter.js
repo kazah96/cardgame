@@ -15,6 +15,7 @@ const filterTable = {
   [actions.peerConnected]: levels.anonymous,
   [actions.peerDisconnected]: levels.anonymous,
   [actions.login]: levels.anonymous,
+  [actions.logout]: levels.anonymous,
   [actions.userRegister]: levels.anonymous,
 };
 

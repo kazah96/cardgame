@@ -12,11 +12,10 @@ const callbacks = [];
 export function connect(data) {
   return dispatch => {
     if (socket) return;
-
-    socket = new WebSocket("ws://localhost:3000");
+    console.log(window.location);
+    socket = new WebSocket(`ws://${window.location.hostname}:3000`);
     dispatch({ type: webSocketConnectBegin });
 
-    console.log(socket);
     socket.onopen = () => {
       dispatch(sendHandshake());
       dispatch({
@@ -36,7 +35,6 @@ export function connect(data) {
 
     socket.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
-      console.log(message);
 
       callbacks.forEach(callback => {
         callback(message);

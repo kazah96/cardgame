@@ -2,6 +2,7 @@ import { showModal } from "./modal";
 import { setCurrentUser } from "./currentUser";
 import { setHandshake } from "./session";
 import { setUsersCount } from "./stats";
+import { showMessage } from "./chat";
 
 export const actions = {
     "SHOW_ALERT": (dispatch, data) => {
@@ -32,6 +33,11 @@ export const actions = {
     "USERS_COUNT": (dispatch, data) => {
         dispatch(setUsersCount(data.users));
     },
+    "SHOW_MESSAGE": (dispatch, data) => {
+        dispatch(showMessage(data.message, data.sender, data.date));
+        dispatch(showModal("showmessage"));
+    },
+    
 }
 
 export function emitAction(dispatch, message) {

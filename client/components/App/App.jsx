@@ -1,6 +1,6 @@
 import style from './style.css';
 import React from 'react';
-import { Header, Input, LoginForm, Selector } from '../index';
+import { Header, Input, LoginForm, Selector, GameField, Chat, NewMessage } from '../index';
 import Modal from '../Modal';
 
 class App extends React.Component {
@@ -19,16 +19,27 @@ class App extends React.Component {
       <div className={style.header}>
         <Header />
       </div>
-      <div>
-        Users online: {props.users.map((item, key) =>
-          <div key={key}>
-            {item.username}
-          </div>)}
+      <div className={style.content}>
+        {this.props.currentUser.user ?
+          <React.Fragment>
+            <div className={style.leftPanel}>
+              <Chat />
+
+            </div>
+
+          <GameField />
+
+          </React.Fragment>
+
+          : ""}
       </div>
 
       <Selector name={props.modal}>
         <Modal name="loginform">
           <LoginForm />
+        </Modal>
+        <Modal name="showmessage">
+          <NewMessage />
         </Modal>
       </Selector>
     </div>

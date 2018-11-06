@@ -5,7 +5,9 @@ import GameObject from './GameObject';
 import Selector from './Selector';
 import Modal from './Modal';
 import LoginForm from './Popups/LoginForm';
-
+import GameField from './GameField';
+import Chat from './Chat';
+import NewMessage from './Popups/NewMessage';
 
 
 export {
@@ -16,4 +18,7 @@ export {
     Selector,
     LoginForm,
     Modal,
+    GameField,
+    Chat,
+    NewMessage,
 };

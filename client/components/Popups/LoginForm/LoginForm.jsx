@@ -15,13 +15,15 @@ class LoginForm extends Component {
   render() {
     return <div className={style.container}>
       <Input
+        className={style.input}
         onChange={value => this.setState({ name: value })}
         placeholder="name" />
       <Input
+        className={style.input}
         onChange={value => this.setState({ password: value })}
         placeholder="password" />
 
-      <div onClick={() =>
+      <div className={style.submit} onClick={() =>
         this.props.onClick({ username: this.state.name, password: this.state.password })}
       >
         SUBMIT

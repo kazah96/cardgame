@@ -13,4 +13,8 @@ module.exports = {
   handshakeAccepted: "HANDSHAKE_ACCEPTED",
   handshakeRejected: "HANDSHAKE_REJECTED",
   unauthorized: "UNAUTHORIZED",
+  sendMessageToUser: "SEND_MESSAGE_TO_USER",
+  showMessage: "SHOW_MESSAGE",
+  setPosition: "SET_POSITION",
+  setMyPosition: "SET_MY_POSITION",
 };

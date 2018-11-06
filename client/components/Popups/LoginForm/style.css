@@ -1,3 +1,29 @@
 .container {
+    display: flex;
+    flex-direction: column;
+}
 
+.input {
+    margin-top: 20px;
+    background: rgb(234, 237, 241);
+    border-radius: 11px;
+    padding: 10px;
+    font-size: 22px;
+    border: 0;
+
+box-shadow: 0 0 2px 2px;
+}
+
+.submit {
+    cursor: pointer;
+    border: 2px black solid;
+    border-radius: 5px;
+    background: rgb(200, 206, 212);
+    margin: auto;
+    margin-top: auto;
+    margin-top: 20px;
+    padding: 13px;
+}
+.submit:hover {
+    background: white;
 }

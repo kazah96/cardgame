@@ -14,3 +14,4 @@ socket.on("message", console.log);
 
 global.sendMsg = qwr;
 
+
