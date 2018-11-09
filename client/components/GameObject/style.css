@@ -5,27 +5,42 @@
     position: relative;
 }
 
-.objectPos {
+.objectPos_origin {
     position: absolute;
     width: 40px;
     height: 40px;
     transition: all 0.5s ease;
     display: flex;
-
 }
 
-.gameObject{
+.objectPos {
+    position: absolute;
+    transition: all 0.5s ease;
+    display: flex;
+}
+
+
+.gameObject_origin{
     margin: auto;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: rgb(178, 122, 180);
+    background: url("images/sprites/player.png");
     display: flex;
     animation: animate 1s linear infinite both;
     border: 2px dashed white;
     box-shadow: 0 0 8px 3px goldenrod;
-
 }
+
+.gameObject{
+    margin: auto;
+    width: 80px;
+    height: 132px;
+    background: url("images/sprites/player.png") bottom 594px right -24px;
+    display: flex;
+   
+}
+
 
 .text {
    position: absolute;
@@ -36,12 +51,45 @@
 
 }
 
-@keyframes animate{
+.idle {
+    
+}
+
+
+.walking {
+    animation: walking 0.4s steps(6) infinite;
+}
+
+.walking_back {
+    transform: scale(-1,1);
+    animation: walking 0.4s steps(6) infinite;
+}
+
+.sprint_forwards {
+   animation: sprint 0.1s steps(6) infinite;
+}
+
+.sprint_backwards {
+    transform: scale(-1,1);
+    animation: sprint 0.1s steps(6) infinite;
+ }
+ 
+@keyframes walking{
     0% {
-        transform: rotate(0deg);
+        background-position: 650px -12px;
     }
 
     100% {
-        transform: rotate(360deg)
+        background-position: -8px -12px;
+       }
+}
+
+@keyframes sprint{
+    0% {
+        background-position: 650px -164px;
+    }
+
+    100% {
+        background-position: -8px -164px;
        }
 }

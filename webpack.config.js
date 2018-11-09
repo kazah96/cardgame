@@ -2,7 +2,6 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  devtool: 'source-map',
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "client/public"),
@@ -12,6 +11,7 @@ module.exports = {
     extensions: [ '.css', '.wasm', '.mjs', '.js', '.json', '.jsx',],
     alias: {
       components: path.resolve(__dirname, "client/components"),
+      images: path.resolve(__dirname, "client/images"),
     },
   },
   module: {
@@ -48,7 +48,7 @@ module.exports = {
 
       },
       {
-        test: /\.jpg/,
+        test: /\.(jpg|png)/,
         loader: "file-loader",
         options: {
           limit: 100000,
