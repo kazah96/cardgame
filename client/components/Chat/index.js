@@ -1,4 +1,4 @@
-import Component from './Chat.jsx';
+import Component from './Chat';
 import { connect } from 'react-redux';
 import { sendMessageToUser } from "../../actions/chat";
 

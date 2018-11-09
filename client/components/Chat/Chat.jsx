@@ -1,4 +1,4 @@
-import style from './style.css';
+import style from './style';
 import React, { Component } from 'react';
 import cn from "classnames/bind"
 import { Input, Button } from '..';

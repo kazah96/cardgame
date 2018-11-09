@@ -8,6 +8,7 @@ import modal from '../reducers/modal';
 import currentUser from "../reducers/currentUser";
 import stats from "../reducers/stats";
 import chat from "../reducers/chat";
+import array from "../reducers/array";
 
 export default createStore(
     combineReducers({
@@ -18,5 +19,6 @@ export default createStore(
         currentUser,
         stats,
         chat,
+        array,
     }),
     composeWithDevTools(applyMiddleware(reduxThunk)));

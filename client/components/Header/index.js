@@ -1,4 +1,4 @@
-import Header from './Header.jsx';
+import Header from './Header';
 import { connect } from 'react-redux';
 import { showModal, closeModal } from '../../actions/modal';
 import { logout } from '../../actions/login';

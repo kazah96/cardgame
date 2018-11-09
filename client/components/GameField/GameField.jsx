@@ -1,6 +1,7 @@
-import style from './style.css';
+import style from './style';
 import React, { Component } from 'react';
 import cn from "classnames/bind";
+import GameObject from "components/GameObject";
 
 class GameField extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class GameField extends Component {
       var bounds = this.gameContainer.getBoundingClientRect();
       var x = event.clientX - bounds.left;
       var y = event.clientY - bounds.top;
-      this.props.changePosition({ x: x-20, y: y-20 })
+      this.props.changePosition({ x: x - 20, y: y - 20 })
     }
   }
 
@@ -37,12 +38,33 @@ class GameField extends Component {
     this.props.changePosition({ x: x - 20, y: y - 20 })
   }
 
+
+
+  componentWillUpdate() {
+    console.log("Field will update")
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.users !== this.props.users)
+    {
+      if(nextProps.users.length === this.props.users.length) 
+        return false;
+      
+      return true;
+    }
+
+    console.log("App will re-render");
+
+    return true;
+  }
+
   componentWillMount() {
     document.addEventListener("mousedown", this.click);
     document.addEventListener("touchstart", this.onTouch);
 
     document.addEventListener("mouseup", this.release);
     document.addEventListener("mousemove", this.onDrag);
+
   }
 
   componentWillUnmount() {
@@ -60,29 +82,9 @@ class GameField extends Component {
     const cx = cn.bind(style);
 
     return <div ref={node => this.gameContainer = node} className={style.container} >
-      {
-        props.users.map((user, id) => <div
-          key={id}
-          className={style.objectPos}
-          style={{ top: user.y, left: user.x }}
-        >
-          <div
-            className={cx({
-              gameObject: true,
-              player: user.id === props.currentUser.user.id
-            })}
-
-            style={{ background: `#${user.color}` || 'red' }}>
-          </div>
-          <div className={style.text}>
-            {user.id}
-          </div>
-
-        </div>
-        )
-      }
-
+      {props.users.map((user, id) => <GameObject key={id} id={id} />)}
     </div >
+
   }
 }
 

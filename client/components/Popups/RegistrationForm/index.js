@@ -1,4 +1,4 @@
-import RegistrationForm from './RegistrationForm.jsx';
+import RegistrationForm from './RegistrationForm';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../actions/login';
 import { closeModal } from '../../../actions/modal';

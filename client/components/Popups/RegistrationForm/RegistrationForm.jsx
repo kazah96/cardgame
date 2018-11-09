@@ -1,4 +1,4 @@
-import style from './style.css';
+import style from './style';
 import React, { Component } from 'react';
 import Input from '../../Input';
 
@@ -14,8 +14,6 @@ class RegistrationForm extends Component {
   }
 
   render() {
-
-    
     return <div className={style.container}>
       <Input
         className={style.input}

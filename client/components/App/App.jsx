@@ -1,7 +1,8 @@
-import style from './style.css';
+import style from './style';
 import React from 'react';
-import { Header, Input, LoginForm, Selector, GameField, Chat, NewMessage, RegistrationForm } from '../index';
+import { Header, Input, LoginForm, Selector, GameField, Chat, NewMessage, RegistrationForm} from 'components';
 import Modal from '../Modal';
+
 
 class App extends React.Component {
   constructor() {
@@ -9,8 +10,23 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    this.props.connectToServer()
+    this.props.connectToServer();
   }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.array !== this.props.array)
+    {
+      if(nextProps.array.length !== this.props.array.length) 
+        return false;
+      
+      return true;
+    }
+
+    console.log("App will re-render");
+
+    return true;
+  }
+
 
   render() {
     const props = this.props;
@@ -27,13 +43,12 @@ class App extends React.Component {
 
             </div>
 
-          <GameField />
+            <GameField />
 
           </React.Fragment>
 
           : ""}
       </div>
-
       <Selector name={props.modal}>
         <Modal name="loginform">
           <LoginForm />

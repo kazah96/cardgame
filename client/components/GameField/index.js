@@ -1,4 +1,4 @@
-import Component from './GameField.jsx';
+import Component from './GameField';
 import { connect } from 'react-redux';
 import { changePosition } from '../../actions/gameObject';
 

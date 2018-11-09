@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames/bind';
-import style from './style.css';
+import style from './style';
 
 class Input extends Component {
     constructor() {

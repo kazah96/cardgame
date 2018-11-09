@@ -1,4 +1,4 @@
-import LoginForm from './LoginForm.jsx';
+import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import { login } from '../../../actions/login';
 import { closeModal } from '../../../actions/modal';

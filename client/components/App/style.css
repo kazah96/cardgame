@@ -2,9 +2,8 @@
     width: 80vw;
     min-width: 500px;
     margin: 0 auto;
+    background: antiquewhite url("/images/as.jpg") ;
 
-    background: rgb(221, 204, 207);
-    
 
     border-top-width: 0;
     border-bottom-left-radius: 20px;

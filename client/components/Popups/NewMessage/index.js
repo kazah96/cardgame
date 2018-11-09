@@ -1,4 +1,4 @@
-import NewMessage from './NewMessage.jsx';
+import NewMessage from './NewMessage';
 import { connect }  from "react-redux";
 
 function mapStateToProps(state) {

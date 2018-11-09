@@ -1,4 +1,4 @@
-import App from './App.jsx';
+import App from './App';
 import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
 import { connect as socketConnect } from '../../actions/connection';
@@ -8,8 +8,8 @@ import { sendHandshake } from '../../actions/session';
 const mapStateToProps = (state) => {
     return {
         modal: state.modal.name,
-        users: state.stats.users,
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        array: state.array,
     }
 }
 

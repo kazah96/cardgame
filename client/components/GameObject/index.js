@@ -1,16 +1,25 @@
-import Component from './GameObject.jsx';
+import Component from './GameObject';
 import { connect } from 'react-redux';
-import {changePosition} from '../../actions/gameObject';
+import { changePosition } from '../../actions/gameObject';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+    if (!state.stats.users) return {
+        x: 0,
+        y: 0,
+        id: ownProps.id,
+    }
+
+    const user = state.stats.users[ownProps.id];
+    const { x, y, color, id } = user;
+
     return {
-        position: state.gameObject.position
+        x, y, color, isPlayer: id === ownProps.id
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        changePosition: position => dispatch(changePosition(position))
+       changePosition: ({ x, y }) => dispatch(changePosition({ x, y }))
     }
 }
 

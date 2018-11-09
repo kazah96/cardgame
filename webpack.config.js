@@ -2,13 +2,19 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
+  devtool: 'source-map',
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "client/public"),
     filename: "bundlick.js",
   },
+  resolve: {
+    extensions: [ '.css', '.wasm', '.mjs', '.js', '.json', '.jsx',],
+    alias: {
+      components: path.resolve(__dirname, "client/components"),
+    },
+  },
   module: {
-
     rules: [
       // rules for modules (configure loaders, parser options, etc.)
       {
@@ -39,6 +45,16 @@ module.exports = {
       {
         test: /\.css/,
         loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
+
+      },
+      {
+        test: /\.jpg/,
+        loader: "file-loader",
+        options: {
+          limit: 100000,
+          name: "[name].[hash:8].[ext]",
+          outputPath: "eeed/",
+        },
 
       },
     ],
