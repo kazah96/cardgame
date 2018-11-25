@@ -12,6 +12,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, "client/components"),
       images: path.resolve(__dirname, "client/images"),
+      actions: path.resolve(__dirname, "client/actions"),
+      reducers: path.resolve(__dirname, "client/reducers"),
     },
   },
   module: {

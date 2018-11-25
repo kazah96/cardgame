@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "./server"
+  ],
+  "verbose": true,
+  "ignore": [
+    "node_modules/*",
+    "client/*"
+  ]
+}

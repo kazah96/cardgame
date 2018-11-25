@@ -1,47 +1,54 @@
 .container {
-    background:    rgba(151, 206, 255, 0.2);
+    background:    rgba(151, 206, 255, 0.56);
     width: 100%;
     height: 500px;
     position: relative;
-}
-
-.objectPos {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    transition: all 0.5s ease;
     display: flex;
-
+    flex-direction: column;
 }
 
-.gameObject{
-    margin: auto;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgb(178, 122, 180);
-    display: flex;
-    animation: animate 1s linear infinite both;
-    border: 2px dashed white;
-    box-shadow: 0 0 8px 3px goldenrod;
+.ground{
+    background: #75947e;
+    z-index: 5;
+    width: 100%;
 
+    height: 49%;
+
+    margin-top: auto;
 }
 
-.text {
-   position: absolute;
-   
-   font-size: smaller;
-   font-family: sans-serif;
-   color: #0d63b9;
-
+.sky{
+    height: 51%;
+    background: linear-gradient(to top, #F8F9C5 , #F8BB6C , #CF6940, rgb(75, 35, 26),rgb(10, 8, 8));
+    animation: sky_animation 10s ease infinite;
+    background-size: 400% 400%;
 }
 
-@keyframes animate{
+@keyframes sky_animation {
     0% {
-        transform: rotate(0deg);
+        background-position: 50% 0%
     }
-
+    50% {
+        background-position: 50% 100%
+    }
     100% {
-        transform: rotate(360deg)
-       }
+        background-position: 50% 0%
+    }
+}
+.sun {
+    background-color: rgba(254, 254, 254, 0.6);
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 100%;
+
+    position: absolute;
+
+    top: 44%;
+
+    box-shadow: 0 0 43px 13px #fff7f1e6;
+
+    left: 50%;
 }

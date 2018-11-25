@@ -1,0 +1,31 @@
+{ "height":5,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[154, 66, 154, 154, 154, 154, 171, 156, 172, 66, 124, 155, 156, 156, 124, 66, 187, 156, 188, 154, 66, 66, 124, 66, 154],
+         "height":5,
+         "id":1,
+         "name":"ground",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":5,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.2.1",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"rgrege.tsx"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1.2,
+ "width":5
+}

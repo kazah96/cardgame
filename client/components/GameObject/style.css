@@ -38,6 +38,7 @@
     height: 132px;
     background: url("images/sprites/player.png") bottom 594px right -24px;
     display: flex;
+    z-index: 100;
    
 }
 

@@ -1,4 +1,4 @@
-module.exports = {
+const actions = {
   peerConnected: "PEER_CONNECTED",
   peerDisconnected: "PEER_DISCONNECTED",
   sessionEstablish: "ESTABLISH_SESSION",
@@ -17,4 +17,9 @@ module.exports = {
   showMessage: "SHOW_MESSAGE",
   setPosition: "SET_POSITION",
   setMyPosition: "SET_MY_POSITION",
+  getMap: "GAME/GET_MAP",
+  getTileSet: "GAME/GET_TILE_SET",
+
 };
+
+module.exports = actions;

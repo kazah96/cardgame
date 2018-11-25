@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./components/*"],
+      "actions/*": ["./actions/*"],
+      "reducers/*": ["./reducers/*"],
+      "images/*": ["./components/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -43,7 +43,7 @@ export function connect(data) {
   }
 }
 
-function onMessage(callback) {
+function onMessage(callback) {``
   callbacks.push(callback);
 }
 
@@ -55,5 +55,7 @@ function sendMessage(type, obj) {
   }
 
 }
+
+window.sendMessage = sendMessage;
 
 export { sendMessage, onMessage };

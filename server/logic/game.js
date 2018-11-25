@@ -5,6 +5,7 @@ const {
 const actions = require("../network/actions");
 const registerUser = require("../actions/registerUser");
 const userTypes = require("../network/userTypes");
+const map = require("./map");
 
 
 // function randGenerator(digits) {
@@ -55,6 +56,7 @@ function makeSession(ws) {
     broadcast("USERS_COUNT", { users: connections });
   }
 }
+
 
 outEmitter.on(actions.handshakeAccepted, ({ ws }) => {
   makeSession(ws);
