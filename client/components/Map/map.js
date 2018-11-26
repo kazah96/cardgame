@@ -30,16 +30,17 @@ export const drawMap = (canvas, map) => {
 
 }
 
-export const loadAllImages = (tilesets) => {
+export const loadAllImages = ({ tilesets }) => {
   return new Promise((accept, reject) => {
     const numImages = tilesets.length;
+    const path = "assets/images";
     let loadedImages = 0;
 
     const images = tilesets
       .reduce((accum, item) => {
         const img = new Image();
-        img.src = `assets/images/${item.image}`;
-        
+        img.src = `${path}/${item.image}`;
+
         img.onload = () => {
           loadedImages += 1;
           if (loadedImages >= numImages) {
