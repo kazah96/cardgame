@@ -9,7 +9,6 @@ export default function (state = { isConnected: false }, action) {
         error: {}
       }
     case webSocketConnected:
-      console.log(action.socket);
       return {
         ...state,
         isConnecting: false,

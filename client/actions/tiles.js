@@ -1,4 +1,4 @@
-import { createActions, handleActions, combineActions } from 'redux-actions';
+import { createActions } from 'redux-actions';
 
 function load(url) {
   return new Promise((accept, reject) =>

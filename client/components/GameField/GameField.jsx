@@ -16,6 +16,7 @@ class GameField extends Component {
   render() {
     const props = this.props;
     const cx = cn.bind(style);
+
     return <div ref={node => this.gameContainer = node} className={style.container} >
       
       <Map mapname="small" />

@@ -1,8 +1,6 @@
 export const getTile = (number) => {
   const h = ff.tileheight;
   const w = ff.tilewidth;
-
-
   const y = Math.floor(number / (ff.columns)) * ff.tileheight;
   const x = (number % (ff.columns)) * ff.tilewidth;
 
@@ -30,4 +28,25 @@ export const drawMap = (canvas, map) => {
     map.layers.map(layer => this.drawLayer({ layer, context, img }));
   };
 
+}
+
+export const loadAllImages = (tilesets) => {
+  return new Promise((accept, reject) => {
+    const numImages = tilesets.length;
+    let loadedImages = 0;
+
+    const images = tilesets
+      .reduce((accum, item) => {
+        const img = new Image();
+        img.src = `assets/images/${item.image}`;
+        
+        img.onload = () => {
+          loadedImages += 1;
+          if (loadedImages >= numImages) {
+            accept(images);
+          }
+        }
+        return { ...accum, [item.name]: img }
+      }, {});
+  });
 }
