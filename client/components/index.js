@@ -10,6 +10,7 @@ import Chat from './Chat';
 import NewMessage from './Popups/NewMessage';
 import RegistrationForm from './Popups/RegistrationForm';
 import Button from '../components/Button';
+import Map from 'components/Map';
 
 export {
     App,
@@ -24,4 +25,5 @@ export {
     NewMessage,
     RegistrationForm,
     Button,
+    Map,
 };

@@ -6,9 +6,7 @@ import PropTypes from "prop-types"
 class GameObject extends Component {
   constructor() {
     super();
-
     this.state = { moving: 0, sprint: false }
-
   }
 
   static propTypes = {
@@ -27,8 +25,6 @@ class GameObject extends Component {
     if (this.props.isPlayer) {
       document.addEventListener("keydown", this.keyPress);
       document.addEventListener("keyup", this.keyUp);
-
-
     }
   }
 
@@ -42,7 +38,6 @@ class GameObject extends Component {
       this.setState({ moving: 0 });
     if (event.key === "Shift")
       this.setState({ sprint: false });
-
   }
 
   keyPress = (event) => {

@@ -25,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../client/public")));
+app.use("/assets/maps", express.static(path.join(__dirname, "./assets/maps")));
+app.use("/assets/images", express.static(path.join(__dirname, "./assets/images")));
+app.use("/assets/tiles", express.static(path.join(__dirname, "./assets/tiles")));
 
 app.use("/", indexRouter);
 
@@ -49,8 +52,6 @@ app.listen(app.get("port"), () => {
 });
 
 // const inter = require("./network/interface");
-
-// inter("blyaaa");
 
 require("./logic/game");
 

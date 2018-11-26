@@ -1,0 +1,15 @@
+{ "columns":16,
+ "image":"fb87480023b918a01d60d93c287a4bd2--pixel-games-rpg-maker.jpg",
+ "imageheight":512,
+ "imagewidth":512,
+ "margin":0,
+ "name":"dsd",
+ "spacing":0,
+ "tilecount":256,
+ "tiledversion":"1.2.1",
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ffffff",
+ "type":"tileset",
+ "version":1.2
+}

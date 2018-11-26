@@ -10,5 +10,4 @@
       "images/*": ["./components/*"],
     }
   },
-  "exclude": ["node_modules", "dist"]
 }

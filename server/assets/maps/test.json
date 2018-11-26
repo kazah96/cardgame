@@ -2,7 +2,7 @@
  "infinite":false,
  "layers":[
         {
-         "data":[154, 66, 154, 154, 154, 154, 171, 156, 172, 66, 124, 155, 156, 156, 124, 66, 187, 156, 188, 154, 66, 66, 124, 66, 154],
+         "data":[2, 2, 2, 2, 2, 2, 171, 156, 172, 2, 2, 155, 156, 156, 2, 2, 187, 156, 188, 2, 2, 2, 2, 2, 2],
          "height":5,
          "id":1,
          "name":"ground",
@@ -22,7 +22,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"rgrege.tsx"
+         "source":"..\/..\/..\/..\/..\/..\/Users\/poque\/Documents\/tilemaps\/rgrege.tsx"
         }],
  "tilewidth":32,
  "type":"map",

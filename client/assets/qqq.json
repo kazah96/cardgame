@@ -1,0 +1,15 @@
+{ "columns":16,
+ "image":"assets/images/tiles3.png",
+ "imageheight":512,
+ "imagewidth":512,
+ "margin":0,
+ "name":"qqq",
+ "spacing":0,
+ "tilecount":256,
+ "tiledversion":"1.2.1",
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ffffff",
+ "type":"tileset",
+ "version":1.2
+}

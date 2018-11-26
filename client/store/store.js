@@ -9,6 +9,8 @@ import currentUser from "../reducers/currentUser";
 import stats from "../reducers/stats";
 import chat from "../reducers/chat";
 import array from "../reducers/array";
+import map from "reducers/map";
+import tiles from "reducers/tiles";
 
 export default createStore(
     combineReducers({
@@ -20,5 +22,7 @@ export default createStore(
         stats,
         chat,
         array,
+        map,
+        tiles,
     }),
     composeWithDevTools(applyMiddleware(reduxThunk)));

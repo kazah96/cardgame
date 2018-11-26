@@ -3,6 +3,7 @@ import { setCurrentUser } from "./currentUser";
 import { setHandshake } from "./session";
 import { setUsersCount } from "./stats";
 import { showMessage } from "./chat";
+import mapActions from "actions/map";
 
 export const actions = {
     "SHOW_ALERT": (dispatch, data) => {
@@ -37,7 +38,9 @@ export const actions = {
         dispatch(showMessage(data.message, data.sender, data.date));
         dispatch(showModal("showmessage"));
     },
-    
+    "MAP": (dispatch,data) => {
+        dispatch(mapActions.add(data.map));
+    }
 }
 
 export function emitAction(dispatch, message) {

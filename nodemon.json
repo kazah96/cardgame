@@ -5,6 +5,7 @@
   "verbose": true,
   "ignore": [
     "node_modules/*",
-    "client/*"
+    "client/*",
+    "server/assets/*"
   ]
 }
