@@ -18,7 +18,7 @@ class GameField extends Component {
     const cx = cn.bind(style);
     return <div ref={node => this.gameContainer = node} className={style.container} >
       
-      <Map mapname="big" />
+      <Map mapname="small" />
 
       {props.users.map((user, id) => <GameObject key={id} id={id} />)}
 
