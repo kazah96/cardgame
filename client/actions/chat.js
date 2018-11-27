@@ -1,5 +1,5 @@
-import { createActions } from 'redux-actions';
-import { sendMessage } from './connection';
+import { createActions } from "redux-actions";
+import { sendMessage } from "./connection";
 
 const { chat } = createActions({
   CHAT: {
@@ -15,7 +15,7 @@ const { chat } = createActions({
   },
 });
 
-chat.message.send = ({ id, message }) => (dispatch) => {
+chat.message.send = ({ id, message }) => dispatch => {
   dispatch(sendMessage(`SEND_MESSAGE_TO_USER`, { id, message }));
 };
 

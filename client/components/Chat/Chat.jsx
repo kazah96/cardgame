@@ -1,52 +1,81 @@
-import style from './style';
-import React, { Component } from 'react';
-import cn from "classnames/bind"
-import { Input, Button } from '..';
+import React, { Component } from "react";
+import cn from "classnames";
+import shortid from "shortid";
+import propTypes from "prop-types";
+
+import { Input, Button } from "components";
+
+import style from "./style";
 
 class Chat extends Component {
-  constructor() {
-    super();
+  static propTypes = {
+    id: propTypes.oneOfType([propTypes.number, propTypes.number]).isRequired,
+    sendMessage: propTypes.func,
+    users: propTypes.arrayOf(propTypes.shape({
+      id: propTypes.oneOfType([propTypes.string, propTypes.number]),
+      name: propTypes.string,
+    })),
+  };
+
+  static defaultProps = {
+    users: [],
+    sendMessage: () => {},
+  };
+
+  constructor(props) {
+    super(props);
 
     this.state = {
-      selected: null
-    }
+      selected: null,
+    };
   }
 
-  onselect = (key) => {
+  onselect = key => {
     this.setState({ selected: key });
-  }
+  };
 
   render() {
-    const props = this.props;
-    const cx = cn.bind(style);
+    const { users, sendMessage, id } = this.props;
+    const { selected, message } = this.state;
 
-    return <div className={style.container}>
-      <div className={style.online}>Онлайн:</div>
-      <div className={style.userList}>
-        {props.users && props.users.map((item, key) => <div
-          onClick={() => this.onselect(key)}
-          key={key}
-          className={cx({
-            userItem: true,
-            selected: this.state.selected === key
-          })}
-        >
-          {item.username}
-          <span className={style.info}>[{item.id}] {item.id === props.id ? " (Это вы)" : ""}</span>
-        </div>)}
+    return (
+      <div className={style.container}>
+        <div className={style.online}>Онлайн:</div>
+        <ul className={style.userList}>
+          {users.map((item, key) => (
+            <li
+              onClick={() => this.onselect(key)}
+              key={shortid.generate()}
+              tabIndex={selected === key ? 0 : -1}
+              className={cn({
+                [style.userItem]: true,
+                [style.selected]: selected === key,
+              })}
+            >
+              {item.username}
+              <span className={style.info}>
+                {item.id}
+                {item.id === id ? ` (Это вы)` : ``}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div className={style.message}>
+          <Input onChange={value => this.setState({ message: value })} />
+
+          <Button
+            name="Отправить"
+            className={style.submit}
+            onClick={() =>
+              sendMessage({
+                id: selected,
+                message,
+              })
+            }
+          />
+        </div>
       </div>
-      <div className={style.message}>
-        <Input onChange={value => this.setState({ message: value })} />
-
-
-        <Button
-          name="Отправить"
-          className={style.submit}
-          onClick={() => props.sendMessage({ id: this.state.selected, message: this.state.message })} />
-
-
-      </div>
-    </div>
+    );
   }
 }
 

@@ -1,40 +1,49 @@
-import style from './style';
-import React, { Component } from 'react';
-import Input from '../../Input';
-import { Button } from '../../index';
+import React, { PureComponent } from "react";
+import propTypes from "prop-types";
+import Input from "components/Input";
+import { Button } from "components/index";
 
-class LoginForm extends Component {
-  constructor() {
-    super();
+import style from "./style";
+
+class LoginForm extends PureComponent {
+  static propTypes = {
+    onClick: propTypes.func.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
 
     this.state = {
-      username: '',
-      password: '',
-    }
+      username: ``,
+      password: ``,
+    };
   }
 
+  handleClick = () => {
+    const { onClick } = this.props;
+    onClick({ ...this.state });
+  };
+
   render() {
-
-
-    return <div className={style.container}>
-      <Input
-        className={style.input}
-        onChange={value => this.setState({ username: value })}
-        placeholder="Имя" />
-
-      <Input
-        className={style.input}
-        onChange={value => this.setState({ password: value })}
-        placeholder="Пароль" />
-
-      <Button
-        className={style.button}
-        name="Войти"
-        onClick={() => this.props.onClick({ ...this.state })} />
-
-
-
-    </div>
+    return (
+      <div className={style.container}>
+        <Input
+          className={style.input}
+          onChange={value => this.setState({ username: value })}
+          placeholder="Имя"
+        />
+        <Input
+          className={style.input}
+          onChange={value => this.setState({ password: value })}
+          placeholder="Пароль"
+        />
+        <Button
+          className={style.button}
+          name="Войcdти"
+          onClick={this.handleClick}
+        />
+      </div>
+    );
   }
 }
 

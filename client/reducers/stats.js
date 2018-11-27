@@ -1,14 +1,15 @@
 const initState = {
-  users: [],
+  users: []
 };
 
-export default function (state = initState, action) {
+export default function(state = initState, action) {
   switch (action.type) {
     case `SET_USERS_COUNT`:
       return {
         ...state,
-        users: action.users,
+        users: action.users
       };
-    default: return state;
+    default:
+      return state;
   }
 }

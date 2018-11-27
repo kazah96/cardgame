@@ -1,5 +1,5 @@
-import { emitAction } from './actions';
-import { sendHandshake } from './session';
+import { emitAction } from "./actions";
+import { sendHandshake } from "./session";
 
 export const webSocketConnectBegin = `WEBSOCKET_CONNECT_BEGIN`;
 export const webSocketConnected = `WEBSOCKET_CONNECTED`;
@@ -9,8 +9,8 @@ let socket;
 
 const callbacks = [];
 
-export function connect(data) {
-  return (dispatch) => {
+export function connect() {
+  return dispatch => {
     if (socket) return;
 
     socket = new WebSocket(`ws://${window.location.hostname}:3000`);
@@ -24,17 +24,17 @@ export function connect(data) {
       });
     };
 
-    socket.onerror = (error) => {
+    socket.onerror = error => {
       dispatch({
         type: webSocketError,
         error,
       });
     };
 
-    socket.onmessage = (msg) => {
+    socket.onmessage = msg => {
       const message = JSON.parse(msg.data);
 
-      callbacks.forEach((callback) => {
+      callbacks.forEach(callback => {
         callback(message);
       });
 
@@ -44,12 +44,11 @@ export function connect(data) {
 }
 
 function onMessage(callback) {
-  ``;
   callbacks.push(callback);
 }
 
 function sendMessage(type, obj) {
-  return (dispatch) => {
+  return () => {
     if (!socket) return;
     const message = JSON.stringify({ type, data: obj });
     socket.send(message);

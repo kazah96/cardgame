@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
-import RegistrationForm from './RegistrationForm';
-import { registerUser } from '../../../actions/login';
-import { closeModal } from '../../../actions/modal';
+import { connect } from "react-redux";
+import { registerUser } from "actions/login";
+import { closeModal } from "actions/modal";
 
-function mapStateToProps(state) {
-  return {
-  };
+import RegistrationForm from "./RegistrationForm";
+
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -17,4 +17,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RegistrationForm);

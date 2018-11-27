@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
-import Component from './GameField';
-import { changePosition } from '../../actions/gameObject';
+import { connect } from "react-redux";
+import { changePosition } from "actions/gameObject";
+
+import Component from "./GameField";
 
 function mapStateToProps(state) {
   return {
@@ -12,8 +13,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changePosition: ({ x, y }) => dispatch(changePosition({ x, y })),
-
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Component);

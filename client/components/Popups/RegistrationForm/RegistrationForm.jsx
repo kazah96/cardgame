@@ -1,39 +1,62 @@
-import style from './style';
-import React, { Component } from 'react';
-import Input from '../../Input';
+import React, { PureComponent } from "react";
+import propTypes from "prop-types";
 
-class RegistrationForm extends Component {
-  constructor() {
-    super();
+import { Input } from "components";
+
+import style from "./style";
+
+class RegistrationForm extends PureComponent {
+  static propTypes = {
+    onClick: propTypes.func,
+  };
+
+  static defaultProps = {
+    onClick: () => {},
+  };
+
+  constructor(props) {
+    super(props);
 
     this.state = {
-      username: '',
-      password: '',
-      year: '',
-    }
+      username: ``,
+      password: ``,
+      year: ``,
+    };
   }
 
-  render() {
-    return <div className={style.container}>
-      <Input
-        className={style.input}
-        onChange={value => this.setState({ username: value })}
-        placeholder="name" />
-      <Input
-        className={style.input}
-        onChange={value => this.setState({ password: value })}
-        placeholder="password" />
-      <Input
-        className={style.input}
-        onChange={value => this.setState({ year: value })}
-        placeholder="year" />
+  handleClick = () => {
+    const { onClick } = this.props;
+    onClick({ ...this.state });
+  };
 
-      <div className={style.submit} onClick={() =>
-        this.props.onClick({ ...this.state})}
-      >
-        SUBMIT
+  render() {
+    return (
+      <div className={style.container}>
+        <Input
+          className={style.input}
+          onChange={value => this.setState({ username: value })}
+          placeholder="name"
+        />
+        <Input
+          className={style.input}
+          onChange={value => this.setState({ password: value })}
+          placeholder="password"
+        />
+        <Input
+          className={style.input}
+          onChange={value => this.setState({ year: value })}
+          placeholder="year"
+        />
+
+        <button
+          type="button"
+          className={style.submit}
+          onClick={this.handleClick}
+        >
+          {`SUBMIT`}
+        </button>
       </div>
-    </div>
+    );
   }
 }
 

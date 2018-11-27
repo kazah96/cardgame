@@ -1,15 +1,15 @@
-import { connect } from 'react-redux';
-import Component from './Object';
+import { connect } from "react-redux";
+import Component from "./Object";
 
 function mapStateToProps(state) {
-  return {
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-
-  };
+  return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);

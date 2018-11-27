@@ -6,16 +6,13 @@ import { setUsersCount } from "./stats";
 import chat from "./chat";
 
 export const actions = {
-  SHOW_ALERT: (dispatch, data) => {
-    alert(data);
-  },
   CONSOLE_LOG: (dispatch, data) => {
-    console.log(data);
+    console.log(data); // eslint-disable-line
   },
   SET_POSITION: (dispatch, data) => {
     dispatch({ type: `SET_POSITION`, data });
   },
-  UNAUTHORIZED: (dispatch, data) => {
+  UNAUTHORIZED: dispatch => {
     dispatch(showModal(`loginform`));
   },
   SHOW_MODAL: (dispatch, data) => {
@@ -25,7 +22,7 @@ export const actions = {
     dispatch(setCurrentUser(data));
     dispatch(setHandshake(data.token));
   },
-  HANDSHAKE_REJECTED: (dispatch, data) => {
+  HANDSHAKE_REJECTED: dispatch => {
     dispatch(showModal(`loginform`));
   },
   HANDSHAKE_ACCEPTED: (dispatch, data) => {
@@ -47,8 +44,8 @@ export function emitAction(dispatch, message) {
   const action = actions[message.type];
 
   if (!action) {
-    console.log(message);
-    console.log(`No such action`);
+    console.log(message);  // eslint-disable-line
+    console.log(`No such action`);  // eslint-disable-line
     return;
   }
 

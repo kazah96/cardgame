@@ -1,38 +1,51 @@
-import React, { Component } from 'react';
-import style from './style';
+import React, { Component } from "react";
+import propTypes from "prop-types";
+
+import style from "./style";
 
 class Modal extends Component {
-    constructor() {
-        super();
+  static propTypes = {
+    children: propTypes.node,
+    onExit: propTypes.func,
+  };
 
-    }
+  static defaultProps = {
+    onExit: () => {},
+    children: null,
+  };
 
-    click = (e) => {
-        if (!this.element.contains(e.target))
-        {
-            console.log("on exit");
-            this.props.onExit();
-        }
-    }
+  componentWillMount() {
+    document.addEventListener(`mousedown`, this.click);
+  }
 
-    componentDidMount(){
-        console.log("mounete");
-    }
+  componentWillUnmount() {
+    document.removeEventListener(`mousedown`, this.click);
+  }
 
-    componentWillMount() {
-        document.addEventListener("mousedown", this.click);
-    }
-    componentWillUnmount() {
-        document.removeEventListener("mousedown", this.click);
-    }
+  click = event => {
+    const { onExit } = this.props;
 
-    render() {
-        return <div className={style.background}>
-            <div ref={element => this.element = element} className={style.modal}>
-                {this.props.children}
-            </div>
+    if (!this.element.contains(event.target)) {
+      onExit();
+    }
+  };
+
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div className={style.background}>
+        <div
+          ref={ref => {
+            this.element = ref;
+          }}
+          className={style.modal}
+        >
+          {children}
         </div>
-    }
+      </div>
+    );
+  }
 }
 
 export default Modal;

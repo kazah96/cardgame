@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Header from './Header';
-import { showModal, closeModal } from '../../actions/modal';
+import { showModal } from '../../actions/modal';
 import { logout } from '../../actions/login';
 
 function mapStateToProps(state) {

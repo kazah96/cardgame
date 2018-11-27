@@ -1,32 +1,12 @@
-import style from './style';
-import React, { Component } from 'react';
-import cn from "classnames/bind";
-import GameObject from "components/GameObject";
-import Map from "components/Map";
+import React from "react";
+import { Map } from "components";
 
-class GameField extends Component {
-  constructor() {
-    super();
-    this.state = {
-      x: 50,
-      y: 50,
-    }
-  }
+import style from "./style";
 
-  render() {
-    const props = this.props;
-    const cx = cn.bind(style);
-
-    return <div ref={node => this.gameContainer = node} className={style.container} >
-      
-      <Map mapname="small" />
-
-      {props.users.map((user, id) => <GameObject key={id} id={id} />)}
-
-     
-    </div >
-
-  }
-}
+const GameField = React.memo(() => (
+  <div className={style.container}>
+    <Map mapname="small" />
+  </div>
+));
 
 export default GameField;

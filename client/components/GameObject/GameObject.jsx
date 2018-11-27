@@ -1,12 +1,14 @@
-import style from './style';
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import cn from "classnames/bind";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+
+import style from "./style";
+
 
 class GameObject extends Component {
   constructor() {
     super();
-    this.state = { moving: 0, sprint: false }
+    this.state = { moving: 0, sprint: false };
   }
 
   static propTypes = {
@@ -15,10 +17,10 @@ class GameObject extends Component {
     isPlayer: PropTypes.bool,
     color: PropTypes.string,
     id: PropTypes.number,
-  }
+  };
 
   componentWillUpdate() {
-    console.log("GameObj will update")
+    console.log("GameObj will update");
   }
 
   componentWillMount() {
@@ -33,15 +35,13 @@ class GameObject extends Component {
       document.removeEventListener("keydown", this.keyPress);
   }
 
-  keyUp = (event) => {
+  keyUp = event => {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight")
       this.setState({ moving: 0 });
-    if (event.key === "Shift")
-      this.setState({ sprint: false });
-  }
+    if (event.key === "Shift") this.setState({ sprint: false });
+  };
 
-  keyPress = (event) => {
-
+  keyPress = event => {
     switch (event.key) {
       case "ArrowLeft":
         if (this.state.moving !== 2) {
@@ -59,53 +59,45 @@ class GameObject extends Component {
       default:
         return;
     }
-  }
+  };
 
   getAnimation() {
     const animations = {
-      "walking_forwards": "walking",
-      "walking_backwards": "walking_back",
-      "sprint_forwards": "sprint_forwards",
-      "sprint_backwards": "sprint_backwards",
-    }
+      walking_forwards: "walking",
+      walking_backwards: "walking_back",
+      sprint_forwards: "sprint_forwards",
+      sprint_backwards: "sprint_backwards",
+    };
     console.log(this.state);
     let animName = "";
-    if(this.state.moving === 0) return;
+    if (this.state.moving === 0) return;
 
-   animName += this.state.sprint ? "sprint" : "walking";
-   animName+="_";
-   animName += this.state.moving === 1 ? "forwards" : "backwards";
+    animName += this.state.sprint ? "sprint" : "walking";
+    animName += "_";
+    animName += this.state.moving === 1 ? "forwards" : "backwards";
 
     return animations[animName];
   }
-
 
   render() {
     const props = this.props;
 
     const cx = cn.bind(style);
-    return <div
+    return (
+      <div className={style.objectPos} style={{ top: props.y, left: props.x }}>
+        <div
+          className={cx({
+            gameObject: true,
+            [this.getAnimation()]: true,
+            player: props.isPlayer,
+          })}
 
-      className={style.objectPos}
-      style={{ top: props.y, left: props.x }}
-    >
-      <div
-        className={cx({
-          gameObject: true,
-          [this.getAnimation()]: true,
-          player: props.isPlayer
-        })}
-
-      // style={{ background: `#${props.color}` || 'red' }}
-      >
+          // style={{ background: `#${props.color}` || 'red' }}
+        />
+        <div className={style.text}>{props.id}</div>
       </div>
-      <div className={style.text}>
-        {props.id}
-      </div>
-
-    </div>
+    );
   }
 }
-
 
 export default GameObject;

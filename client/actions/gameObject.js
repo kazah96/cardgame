@@ -1,7 +1,7 @@
-import { sendMessage } from './connection';
+import { sendMessage } from "./connection";
 
 export function changePosition(position) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(sendMessage(`SET_MY_POSITION`, position));
   };
 }
