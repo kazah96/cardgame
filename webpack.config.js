@@ -8,7 +8,7 @@ module.exports = {
     filename: "bundlick.js",
   },
   resolve: {
-    extensions: [ '.css', '.wasm', '.mjs', '.js', '.json', '.jsx',],
+    extensions: [".css", ".wasm", ".mjs", ".js", ".json", ".jsx"],
     alias: {
       components: path.resolve(__dirname, "client/components"),
       images: path.resolve(__dirname, "client/images"),

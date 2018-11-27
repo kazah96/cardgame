@@ -1,15 +1,26 @@
 {
   "extends": [
-    "react-app",
     "airbnb-base"
   ],
   "rules": {
     "jsx-quotes": [
       1,
       "prefer-double"
-    ]
+    ],
+    "quotes": ["error", "backtick"],
+    "linebreak-style":"off"
   },
   "plugins": [
     "prettier"
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack.config.js"
+      }
+    }
+   
+
+  }
+  
 }

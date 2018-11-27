@@ -8,7 +8,7 @@ exports.addPlayer = ({ id, position, color }, send) => (dispatch) => {
     },
   );
 
-  send()
+  send();
 
 
   return ({

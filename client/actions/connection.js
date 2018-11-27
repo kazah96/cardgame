@@ -1,16 +1,16 @@
 import { emitAction } from './actions';
 import { sendHandshake } from './session';
 
-export const webSocketConnectBegin = "WEBSOCKET_CONNECT_BEGIN";
-export const webSocketConnected = "WEBSOCKET_CONNECTED";
-export const webSocketError = "WEBSOCKET_ERROR";
+export const webSocketConnectBegin = `WEBSOCKET_CONNECT_BEGIN`;
+export const webSocketConnected = `WEBSOCKET_CONNECTED`;
+export const webSocketError = `WEBSOCKET_ERROR`;
 
-let socket = undefined;
+let socket;
 
 const callbacks = [];
 
 export function connect(data) {
-  return dispatch => {
+  return (dispatch) => {
     if (socket) return;
 
     socket = new WebSocket(`ws://${window.location.hostname}:3000`);
@@ -20,40 +20,40 @@ export function connect(data) {
       dispatch(sendHandshake());
       dispatch({
         type: webSocketConnected,
-        socket
+        socket,
       });
     };
 
     socket.onerror = (error) => {
       dispatch({
         type: webSocketError,
-        error
-      })
+        error,
+      });
     };
 
     socket.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
 
-      callbacks.forEach(callback => {
+      callbacks.forEach((callback) => {
         callback(message);
       });
 
       emitAction(dispatch, message);
-    }
-  }
+    };
+  };
 }
 
-function onMessage(callback) {``
+function onMessage(callback) {
+  ``;
   callbacks.push(callback);
 }
 
 function sendMessage(type, obj) {
-  return dispatch => {
+  return (dispatch) => {
     if (!socket) return;
     const message = JSON.stringify({ type, data: obj });
     socket.send(message);
-  }
-
+  };
 }
 
 window.sendMessage = sendMessage;

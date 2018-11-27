@@ -27,7 +27,6 @@ function makeEmitSend(...middleware) {
   });
 
   return function send(type, msg) {
-
     const result = middlewareManager.exec({ ws: this, msg: { type, msg } });
     const message = JSON.stringify({
       type: result.msg.type,

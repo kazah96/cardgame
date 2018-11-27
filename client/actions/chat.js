@@ -1,23 +1,22 @@
+import { createActions } from 'redux-actions';
 import { sendMessage } from './connection';
 
-export function addMessageInChat(name) {
-  return {
-    type: "ADD_MESSAGE_IN_CHAT",
-    name,
-  }
-}
+const { chat } = createActions({
+  CHAT: {
+    MESSAGE: {
+      SHOW: (message, sender, date) => ({
+        message,
+        sender,
+        date: new Date(date).toLocaleString(),
+      }),
+      ADD: undefined,
+      SEND: undefined,
+    },
+  },
+});
 
-export function showMessage(message, sender, date) {
-  return {
-    type: "SHOW_MESSAGE",
-    message,
-    sender,
-    date: new Date(date).toLocaleString()
-  }
-}
+chat.message.send = ({ id, message }) => (dispatch) => {
+  dispatch(sendMessage(`SEND_MESSAGE_TO_USER`, { id, message }));
+};
 
-export function sendMessageToUser({ id, message }) {
-  return dispatch => {
-    dispatch(sendMessage("SEND_MESSAGE_TO_USER", { id, message }));
-  }
-}
+export default chat;

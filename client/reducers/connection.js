@@ -6,22 +6,22 @@ export default function (state = { isConnected: false }, action) {
       return {
         ...state,
         isConnecting: true,
-        error: {}
-      }
+        error: {},
+      };
     case webSocketConnected:
       return {
         ...state,
         isConnecting: false,
         isConnected: true,
         socket: action.socket,
-        error: {}
-      }
+        error: {},
+      };
     case webSocketError:
       return {
         ...state,
         isConnecting: false,
-        error: action.error
-      }
+        error: action.error,
+      };
     default: return state;
   }
 }

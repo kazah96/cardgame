@@ -1,11 +1,10 @@
 import { createActions } from 'redux-actions';
 
 function load(url) {
-  return new Promise((accept, reject) =>
-    fetch(url)
-      .then(response => response.json().then(accept))
-      .catch(reject));
-};
+  return new Promise((accept, reject) => fetch(url)
+    .then(response => response.json().then(accept))
+    .catch(reject));
+}
 
 const { game: { map } } = createActions({
   GAME:
@@ -15,16 +14,9 @@ const { game: { map } } = createActions({
       LOAD: undefined,
     },
   },
-}
-);
+});
 
-map.load = (name) => {
-  return dispatch => {
-    return load(`assets/maps/${name}.json`).then(data =>
-      dispatch(map.add({ name, map: data }))
-    );
-  }
-};
+map.load = name => dispatch => load(`assets/maps/${name}.json`).then(data => dispatch(map.add({ name, map: data })));
 
 
 export default map;

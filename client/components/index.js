@@ -1,3 +1,4 @@
+import Map from 'components/Map';
 import App from './App';
 import Header from './Header';
 import Input from './Input';
@@ -9,21 +10,20 @@ import GameField from './GameField';
 import Chat from './Chat';
 import NewMessage from './Popups/NewMessage';
 import RegistrationForm from './Popups/RegistrationForm';
-import Button from '../components/Button';
-import Map from 'components/Map';
+import Button from "./Button";
 
 export {
-    App,
-    Header,
-    Input,
-    GameObject,
-    Selector,
-    LoginForm,
-    Modal,
-    GameField,
-    Chat,
-    NewMessage,
-    RegistrationForm,
-    Button,
-    Map,
+  App,
+  Header,
+  Input,
+  GameObject,
+  Selector,
+  LoginForm,
+  Modal,
+  GameField,
+  Chat,
+  NewMessage,
+  RegistrationForm,
+  Button,
+  Map,
 };

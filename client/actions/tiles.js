@@ -1,11 +1,10 @@
 import { createActions } from 'redux-actions';
 
 function load(url) {
-  return new Promise((accept, reject) =>
-    fetch(url)
-      .then(response => response.json().then(accept(data)))
-      .catch(reject));
-};
+  return new Promise((accept, reject) => fetch(url)
+    .then(response => response.json().then(accept(data)))
+    .catch(reject));
+}
 
 const { game: { tiles } } = createActions({
   GAME:
@@ -15,15 +14,12 @@ const { game: { tiles } } = createActions({
       LOAD: undefined,
     },
   },
-}
-);
+});
 
-tiles.load = (name) => {
-  return dispatch => {
-    load(`assets/tiles/${name}.json`).then(
-      dispatch(tiles.add({ name, tileset: data }))
-    )
-  }
+tiles.load = name => (dispatch) => {
+  load(`assets/tiles/${name}.json`).then(
+    dispatch(tiles.add({ name, tileset: data })),
+  );
 };
 
 export default tiles;
