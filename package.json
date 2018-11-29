@@ -10,8 +10,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{jsx,js}":"eslint"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
