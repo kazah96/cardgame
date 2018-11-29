@@ -8,6 +8,11 @@
     "build": "webpack -w --config webpack.config.js",
     "test": "mocha -- server/**/*.test.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint"
+    }
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -61,6 +66,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "lint-staged": "^8.0.0",
+    "husky": "^1.2.0",
     "mocha": "^5.2.0",
     "prettier": "^1.15.2",
     "sinon": "^7.1.1",

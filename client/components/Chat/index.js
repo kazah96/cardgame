@@ -9,6 +9,10 @@ function mapStateToProps(state) {
   };
 }
 
+const fqw = 'Asd';
+
+fqw.asd();
+
 function mapDispatchToProps(dispatch) {
   return {
     sendMessage: ({ id, message }) =>

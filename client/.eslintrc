@@ -26,8 +26,5 @@
         "config": "./webpack.config.js"
       }
     }
-   
-
   }
-  
 }
