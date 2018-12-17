@@ -6,10 +6,8 @@ import ReactDom from "react-dom";
 import { App } from "components";
 import { sendMessage } from "actions/connection";
 import store from "./store/store";
-import eventDispatcher from "eventemitter3"
 
 window.sendMessage = sendMessage;
-
 
 /* eslint-disable */
 
