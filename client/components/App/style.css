@@ -1,10 +1,9 @@
 .app {
-    width: 80vw;
+    width: 95vw;
     min-width: 500px;
+    min-height: 100vh;
     margin: 0 auto;
     background: antiquewhite url("/images/as.jpg") ;
-
-
     border-top-width: 0;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;

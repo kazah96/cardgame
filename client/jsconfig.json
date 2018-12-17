@@ -9,7 +9,11 @@
       "components/*": ["./components/*"],
       "actions/*": ["./actions/*"],
       "reducers/*": ["./reducers/*"],
-      "images/*": ["./components/*"]
+      "images/*": ["./images/*"],
+      "store/*": ["./store"],
+      "consts/*": ["./consts"],
+      "game/*": ["./game"],
+      "utils/*": ["./utils"]
     }
   }
 }

@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import style from "./style";
 
+const AppContext = React.createContext();
+
 class Map extends PureComponent {
   static propTypes = {
     map: PropTypes.shape({
@@ -119,15 +121,13 @@ class Map extends PureComponent {
     return (
       <div className={style.container}>
         {map && (
-          <React.Fragment>
-            <canvas
-              height={height}
-              width={width}
-              ref={node => {
-                this.canvas = node;
-              }}
-            />
-          </React.Fragment>
+          <canvas
+            height={height}
+            width={width}
+            ref={node => {
+              this.canvas = node;
+            }}
+          />
         )}
       </div>
     );

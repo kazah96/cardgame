@@ -15,7 +15,7 @@ class Input extends PureComponent {
     placeholder: `text`,
     className: ``,
   };
-  
+
   constructor() {
     super();
     this.state = {

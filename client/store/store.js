@@ -4,6 +4,7 @@ import reduxThunk from "redux-thunk";
 import reducer from "reducers/reducer";
 import connect from "reducers/connection";
 import gameObject from "reducers/gameObject";
+import gameConfig from "reducers/gameConfig";
 import modal from "reducers/modal";
 import currentUser from "reducers/currentUser";
 import stats from "reducers/stats";
@@ -13,9 +14,9 @@ import map from "reducers/map";
 
 export default createStore(
   combineReducers({
+    game: combineReducers({ objects: gameObject, config: gameConfig }),
     reducer,
     connect,
-    gameObject,
     modal,
     currentUser,
     stats,
@@ -23,5 +24,5 @@ export default createStore(
     array,
     map,
   }),
-  composeWithDevTools(applyMiddleware(reduxThunk))
+  composeWithDevTools(applyMiddleware(reduxThunk)),
 );

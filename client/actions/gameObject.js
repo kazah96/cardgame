@@ -1,7 +1,15 @@
-import { sendMessage } from "./connection";
+import { createActions } from "redux-actions";
 
-export function changePosition(position) {
-  return dispatch => {
-    dispatch(sendMessage(`SET_MY_POSITION`, position));
-  };
-}
+const {
+  game: { objects },
+} = createActions({
+  GAME: {
+    OBJECTS: {
+      SET_POSITION: (id, position) => ({...position, id}),
+      ADD: ({id, object}) => ({id, object})
+    },
+  },
+});
+
+
+export default objects;

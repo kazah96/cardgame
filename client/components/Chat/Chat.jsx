@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import cn from "classnames";
 import shortid from "shortid";
 import propTypes from "prop-types";
-
 import { Input, Button } from "components";
 
 import style from "./style";
 
 class Chat extends Component {
+
   static propTypes = {
     id: propTypes.oneOfType([propTypes.number, propTypes.number]).isRequired,
     sendMessage: propTypes.func,
-    users: propTypes.arrayOf(propTypes.shape({
-      id: propTypes.oneOfType([propTypes.string, propTypes.number]),
-      name: propTypes.string,
-    })),
+    users: propTypes.arrayOf(
+      propTypes.shape({
+        id: propTypes.oneOfType([propTypes.string, propTypes.number]),
+        name: propTypes.string,
+      }),
+    ),
   };
 
   static defaultProps = {
@@ -28,6 +30,9 @@ class Chat extends Component {
     this.state = {
       selected: null,
     };
+  }
+
+  componentDidMount() {
   }
 
   onselect = key => {
@@ -62,16 +67,15 @@ class Chat extends Component {
         </ul>
         <div className={style.message}>
           <Input onChange={value => this.setState({ message: value })} />
-
           <Button
             name="Отправить"
             className={style.submit}
-            onClick={() =>
+            onClick={() => {
               sendMessage({
                 id: selected,
                 message,
-              })
-            }
+              });
+            }}
           />
         </div>
       </div>

@@ -24,9 +24,78 @@
          "width":35,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"xdg",
+         "objects":[
+                {
+                 "height":270.666666666667,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":233.333333333333,
+                 "x":288,
+                 "y":578.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":865.333333333333,
+                 "y":896
+                }, 
+                {
+                 "height":0,
+                 "id":3,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-6.66666666666663,
+                         "y":276
+                        }, 
+                        {
+                         "x":222.666666666667,
+                         "y":278.666666666667
+                        }, 
+                        {
+                         "x":224,
+                         "y":122.666666666667
+                        }, 
+                        {
+                         "x":125.333333333333,
+                         "y":121.333333333333
+                        }, 
+                        {
+                         "x":124,
+                         "y":-4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":645.333333333333,
+                 "y":582.666666666667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":1,
+ "nextlayerid":10,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.2.1",

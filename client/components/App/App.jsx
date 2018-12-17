@@ -9,7 +9,7 @@ import {
   Chat,
   Modal,
   NewMessage,
-  RegistrationForm
+  RegistrationForm,
 } from "components";
 
 import style from "./style";
@@ -20,11 +20,11 @@ class App extends React.Component {
       user: propTypes.object,
     }).isRequired,
     connectToServer: propTypes.func.isRequired,
-    modal: propTypes.string
+    modal: propTypes.string,
   };
 
   static defaultProps = {
-    modal: ``
+    modal: ``,
   };
 
   componentWillMount() {
@@ -36,7 +36,7 @@ class App extends React.Component {
   render() {
     const {
       currentUser: { user },
-      modal
+      modal,
     } = this.props;
 
     return (
@@ -45,15 +45,13 @@ class App extends React.Component {
           <Header />
         </div>
         <div className={style.content}>
-          {user ? (
+          {user && (
             <React.Fragment>
               <div className={style.leftPanel}>
                 <Chat />
               </div>
               <GameField />
             </React.Fragment>
-          ) : (
-            ``
           )}
         </div>
         <Selector name={modal}>

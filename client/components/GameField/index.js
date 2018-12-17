@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { changePosition } from "actions/gameObject";
+import configActions from "actions/gameConfig";
 
 import Component from "./GameField";
 
@@ -12,7 +12,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changePosition: ({ x, y }) => dispatch(changePosition({ x, y })),
+    setMapSize: ({ width, height }) =>
+      dispatch(configActions.setMapSize({ width, height })),
   };
 }
 
