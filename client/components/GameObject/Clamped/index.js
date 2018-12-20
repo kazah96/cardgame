@@ -23,7 +23,7 @@ export default function WrapComponent(Component) {
     };
 
     render() {
-      return Component && <Component {...this.props} move={this.move} />;
+      return Component ? <Component {...this.props} move={this.move} /> : "";
     }
   };
 }

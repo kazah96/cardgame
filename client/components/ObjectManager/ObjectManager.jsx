@@ -21,13 +21,8 @@ export default class ObjectManager extends React.Component {
     return (
       <React.Fragment>
         {Object.keys(objects).map(objectId => {
-          const GeneratedObject = GenerateObject(objects[objectId]);
-          return (
-            <GeneratedObject
-              key={objectId}
-              id={objectId}
-            />
-          );
+          const GeneratedObject = GenerateObject({ objectName: "bayce" });
+          return <GeneratedObject key={objectId} id={objectId} />;
         })}
       </React.Fragment>
     );

@@ -1,69 +1,48 @@
 import _ from "lodash";
 
+import compose from "utils/pipe";
+
 import requireConfig from "./requireConfig";
+import requireGenerator from "./requireGenerator";
 
-function checkValidName(name) {
-  if (typeof name !== "string") {
-    throw new Error("Name should be a string");
-  }
+// function checkValidName(name) {
+//   if (typeof name !== "string") {
+//     throw new Error("Name should be a string");
+//   }
 
-  if (name.length <= 0) {
-    throw new Error("Name should empty");
-  }
+//   if (name.length <= 0) {
+//     throw new Error("Name should empty");
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
-function bbException() {
-  this.message = "Паваыпавп";
-  this.toString = function() {
-    return this.message;
-  };
-}
-
-function nodeGenerator(
-  props,
-  { priority, matchSchema, objGenerator, componentWrapperGenerator },
-) {
-  const newPriority = typeof priority !== "number" ? priority : 0;
-
-  // Пропуск объектов по умолчанию
-  let getObject = obj => obj;
-  let getComponent = obj => obj;
-
-  // Если параметр отключен - просто пропускаем
-  if (props !== false) {
-    if (typeof objGenerator !== "function")
-      throw new Error("Object generator should be a function");
-    if (typeof componentGenerator !== "function")
-      throw new Error("Component generator should be a function");
-
-    // destruct потому что merge мутирует объект
-    getObject = previousObject =>
-      _.merge({ ...previousObject }, objGenerator(props));
-    getComponent = previousComponent =>
-      componentWrapperGenerator(props)(previousComponent);
-  }
-
-  this.priority = newPriority;
-  this.getObject = getObject;
-  this.getComponent = getComponent;
-}
-
-export default function generate({ objectName, overrideParams }) {
+export default function ObjectFactory({ objectName, overrideParams }) {
   const config = requireConfig();
 
   if (
     !Object.prototype.hasOwnProperty.call(config, objectName) ||
     typeof config[objectName] !== "object"
   )
-    throw new Error("Required gameobj is not an object");
+    throw new Error(`Required gameobj ${objectName} doesnt have an entry in config`);
 
-  const properties = config[objectName];
+  // перезаписываем параметры, если есть такие
+  const properties = _.merge({ ...config[objectName] }, { ...overrideParams });
 
-  //const assemblied = assembly(properties);
+  const generatorArray = Object.keys(properties)
+    .map(propertyName => {
+      const generator = requireGenerator(propertyName);
+      return generator.make(properties[propertyName]);
+    })
+    .sort((a, b) => {
+      if (a.priority > b.priority) return 1;
+      if (a.priority < b.priority) return -1;
+      return 0;
+    });
+  
+  this.getComponent = () =>
+    compose(...generatorArray.map(item => item.getComponent))();
 
-  Object.keys(properties).map(property => {});
-
-  return {};
+  this.getObject = () =>
+    compose(...generatorArray.map(item => item.getObject))();
 }
