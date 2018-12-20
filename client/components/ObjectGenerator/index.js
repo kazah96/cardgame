@@ -33,7 +33,7 @@ export default function(obj) {
   fns.push(Clamped);
   fns.push(Ranged);
   fns.push(MovingObject);
-  fns.push(obj.type === `ai` ? AiHandler : InputHandler);
+  fns.push(obj.type === "ai" ? AiHandler : InputHandler);
 
   const Component = compose(...fns)();
 

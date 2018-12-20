@@ -1,7 +1,5 @@
 .rightPanel {
-  position: absolute;
-  right: 0;
-  width: 260px;
-  background: ghostwhite;
-  height: 100%;
+    width: 260px;
+    height: 100%;
+    width: 341px;
 }

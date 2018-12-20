@@ -1,5 +1,5 @@
 export default {
-  mapname: `small`,
-  mapWidth: 500,
-  mapHeight: 500,
+  mapname: "small2",
+  mapWidth: 2000,
+  mapHeight: 2000,
 };

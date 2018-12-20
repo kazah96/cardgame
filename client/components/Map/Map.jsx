@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import style from "./style";
 
-const AppContext = React.createContext();
-
 class Map extends PureComponent {
   static propTypes = {
     map: PropTypes.shape({
@@ -71,7 +69,7 @@ class Map extends PureComponent {
     layer.data.forEach((item, key) => {
       const tile = this.getTile({ number: item });
       const y = Math.floor(key / layer.width);
-      const x = key % layer.height;
+      const x = key % layer.width;
       context.drawImage(
         tile.img,
         tile.x,
@@ -107,7 +105,7 @@ class Map extends PureComponent {
     });
 
   drawMap = () => {
-    const context = this.canvas.getContext(`2d`);
+    const context = this.canvas.getContext("2d");
     const { map } = this.props;
 
     map.layers.map(layer => this.drawLayer({ layer, context }));
