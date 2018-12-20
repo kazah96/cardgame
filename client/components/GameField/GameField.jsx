@@ -8,7 +8,7 @@ import style from "./style";
 
 const emitter = new EventEmitter();
 
-class GameField extends React.PureComponent {
+class GameField extends React.Component {
   componentDidMount() {
     this.init();
   }
@@ -16,12 +16,9 @@ class GameField extends React.PureComponent {
   init = () => {
     setInterval(() => {
       emitter.emit(`tick`);
-    }, 1000);
+    }, 60);
   };
 
-  onClick = event => {
-    emitter.emit(`mouseClick`, { x: event.clientX, y: event.clientY });
-  };
 
   onClick = event => {
     if (this.gameContainer.contains(event.target)) {
@@ -29,6 +26,7 @@ class GameField extends React.PureComponent {
       const x = event.clientX - bounds.left;
       const y = event.clientY - bounds.top;
       emitter.emit(`mouseClick`, { x: x - 20, y: y - 20 });
+      emitter.emit(`setPlayerPos`, { x: x - 20, y: y - 20 });
     }
   };
 

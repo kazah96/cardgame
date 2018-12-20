@@ -5,12 +5,11 @@ import shortId from "shortid";
 
 import HUD from "./HUD";
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps() {
   return {};
 }
 
-function mapContextToProps(context) {
-  const { emitter } = context;
+function mapContextToProps() {
   return {
     // onSpawn: (data) => emitter.emit(`SPAWN_OBJECT`, data),
   };
@@ -18,9 +17,12 @@ function mapContextToProps(context) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSpawn: (param) =>
+    onSpawn: param =>
       dispatch(
-        objectActions.add({ id: shortId.generate(), object: { width: 43, height: 43, x: 50, y: 50, ...param} }),
+        objectActions.add({
+          id: shortId.generate(),
+          object: { width: 43, height: 43, x: 50, y: 50, ...param },
+        }),
       ),
   };
 }

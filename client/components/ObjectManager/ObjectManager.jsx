@@ -1,11 +1,10 @@
-import shortid from "shortid";
 import React from "react";
 import PropTypes from "prop-types";
 import GenerateObject from "components/ObjectGenerator";
 
 export default class ObjectManager extends React.Component {
   static propTypes = {
-    objects: PropTypes.object.isRequired,
+    objects: PropTypes.object.isRequired, // eslint-disable-line
   };
 
   shouldComponentUpdate = prevProps => {
@@ -25,7 +24,7 @@ export default class ObjectManager extends React.Component {
           const GeneratedObject = GenerateObject(objects[objectId]);
           return (
             <GeneratedObject
-              key={shortid.generate()}
+              key={objectId}
               id={objectId}
             />
           );

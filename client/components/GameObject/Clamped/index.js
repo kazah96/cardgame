@@ -6,8 +6,8 @@ import { clamp } from "utils/gameMath";
 export default function WrapComponent(Component) {
   return class Clamped extends React.PureComponent {
     static propTypes = {
-      w: PropTypes.number.isRequired,
-      h: PropTypes.number.isRequired,
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
       mapWidth: PropTypes.number.isRequired,
       mapHeight: PropTypes.number.isRequired,
       move: PropTypes.func.isRequired,

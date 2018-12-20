@@ -6,21 +6,70 @@ export default function WrapComponent(Component) {
   return class GameObject extends React.PureComponent {
     static contextType = contextProvider;
 
-    componentDidMount() {
-      this.context.emitter.on("tick", this.tick);
+    static propTypes = {
+      speed: PropTypes.number,
+      range: PropTypes.number,
+    };
+
+    static defaultProps = {
+      speed: 4,
+      range: 200,
+    };
+
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        status: `idle`,
+        dirX: 1,
+        dirY: 1,
+      };
     }
 
-    componentWillUnmount() {
-      this.context.emitter.off("tick", this.tick);
-    }
+    componentWillUpdate = () => {
+      const { objects, x, y } = this.props;
+      const { status } = this.state;
 
-    tick = () => {
-      const randX = Math.round(Math.random() * 200 - 100);
-      const randY = Math.round(Math.random() * 200 - 100);
-      const { x, y } = this.props;
+      const player = Object.keys(objects).find(
+        item => objects[item].type === `player`,
+      );
 
-      const { move } = this.props;
-      move({ x: x + randX, y: y + randY });
+      if (!player && status !== `idle`) {
+        this.setState({ status: `idle` });
+        return;
+      }
+
+      if (player && (player.x !== x || player.y !== y)) {
+        this.setPlayerPos({ x: player.x, y: player.y });
+      }
+    };
+
+    setPlayerPos = ({ x, y }) => {
+      this.setState({ status: `chasing`, playerPos: { x, y } });
+    };
+
+    shoot = () => {};
+
+    chase = () => {
+      const { move, x, y, range } = this.props;
+      const { playerPos } = this.state;
+
+      if (
+        x > playerPos.x - range &&
+        x < playerPos.y + range &&
+        (y > playerPos.y - range && y < playerPos.y + range)
+      ) {
+        this.shoot();
+      }
+
+      move({ ...playerPos });
+    };
+
+    idle = () => {
+      const { x, y, move, speed } = this.props;
+      const { dirX, dirY } = this.state;
+
+      move({ x: x + dirX * speed, y: y + dirY * speed });
     };
 
     render() {

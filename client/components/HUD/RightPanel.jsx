@@ -24,12 +24,18 @@ export default class RightPanel extends React.PureComponent {
   };
 
   onClick = () => {
-    const item = this.state.selectedItem;
-    this.props.onSpawn({ type: this.state.selectedItem });
+    const { selectedItem, hue, speed, range } = this.state;
+    const { onSpawn } = this.props;
+
+    onSpawn({ type: selectedItem, hue, speed, range });
+  };
+
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const { onSpawn } = this.props;
+    const { selectedItem, hue, speed, range } = this.state;
     return (
       <div className={style.rightPanel}>
         <form>
@@ -42,7 +48,7 @@ export default class RightPanel extends React.PureComponent {
               type="radio"
               value="ai"
               onChange={this.handleOptionChange}
-              checked={this.state.selectedItem === "ai"}
+              checked={selectedItem === `ai`}
             />
             AI
             <input
@@ -50,10 +56,31 @@ export default class RightPanel extends React.PureComponent {
               type="radio"
               value="player"
               onChange={this.handleOptionChange}
-              checked={this.state.selectedItem === "player"}
+              checked={selectedItem === `player`}
             />
             PLAYER
           </p>
+          <p>Hue rotate</p>
+          <input
+            type="hue"
+            name="hue"
+            value={hue}
+            onChange={this.handleInputChange}
+          />
+          <p>Speed</p>
+          <input
+            type="number"
+            name="speed"
+            value={speed}
+            onChange={this.handleInputChange}
+          />
+          <p>Range</p>
+          <input
+            type="number"
+            name="range"
+            value={range}
+            onChange={this.handleInputChange}
+          />
         </form>
 
         <button type="button" onClick={this.onClick}>

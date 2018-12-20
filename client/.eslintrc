@@ -5,7 +5,8 @@
     "prettier"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "rules": {
     "jsx-a11y/click-events-have-key-events": "off",
@@ -17,7 +18,7 @@
       1,
       "prefer-double"
     ],
-    "quotes": ["error", "backtick"],
+    "quotes": ["error", "double"],
     "linebreak-style":"off"
   },
   "plugins": [
