@@ -20,56 +20,26 @@ export default function WrapComponent(Component) {
       super(props);
 
       this.state = {
-        status: `idle`,
+        status: "idle",
         dirX: 1,
         dirY: 1,
       };
     }
 
-    componentWillUpdate = () => {
-      const { objects, x, y } = this.props;
-      const { status } = this.state;
+    componentDidMount() {
+      setInterval(() => {
+        this.idle();
+      }, 500);
+    }
 
-      const player = Object.keys(objects).find(
-        item => objects[item].type === `player`,
-      );
-
-      if (!player && status !== `idle`) {
-        this.setState({ status: `idle` });
-        return;
-      }
-
-      if (player && (player.x !== x || player.y !== y)) {
-        this.setPlayerPos({ x: player.x, y: player.y });
-      }
-    };
-
-    setPlayerPos = ({ x, y }) => {
-      this.setState({ status: `chasing`, playerPos: { x, y } });
-    };
-
-    shoot = () => {};
-
-    chase = () => {
-      const { move, x, y, range } = this.props;
-      const { playerPos } = this.state;
-
-      if (
-        x > playerPos.x - range &&
-        x < playerPos.y + range &&
-        (y > playerPos.y - range && y < playerPos.y + range)
-      ) {
-        this.shoot();
-      }
-
-      move({ ...playerPos });
-    };
+    componentWillUpdate = () => {};
 
     idle = () => {
       const { x, y, move, speed } = this.props;
-      const { dirX, dirY } = this.state;
-
-      move({ x: x + dirX * speed, y: y + dirY * speed });
+      const randX = Math.random() * 100 - 50;
+      const randY = Math.random() * 100 - 50;
+      
+      move({ x: x + randX * speed, y: y + randY * speed });
     };
 
     render() {

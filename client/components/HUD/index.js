@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { wrapContext } from "store/contextProvider";
 import objectActions from "actions/gameObject";
 import shortId from "shortid";
+import ObjectFactory from "game/objectFactory/objectFactory";
 
 import HUD from "./HUD";
 
@@ -17,13 +18,19 @@ function mapContextToProps() {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSpawn: param =>
+    onSpawn: param => {
+      const factory = new ObjectFactory({
+        objectName: param.type,
+        overrideParams: { imaged: { hue: param.hue } },
+      });
+
       dispatch(
         objectActions.add({
           id: shortId.generate(),
-          object: { width: 43, height: 43, x: 50, y: 50, ...param },
+          object: { ...factory.getObject(), type: param.type },
         }),
-      ),
+      );
+    },
   };
 }
 

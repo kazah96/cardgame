@@ -28,7 +28,6 @@ export default function WrapComponent(Component) {
 
     componentDidMount() {
       const { emitter } = this.context;
-
       this.setEmitter(emitter);
     }
 
@@ -90,10 +89,10 @@ export default function WrapComponent(Component) {
     };
 
     render() {
-      return (
-        Component && (
-          <Component {...this.props} move={this.move} stop={this.stop} />
-        )
+      return Component ? (
+        <Component {...this.props} move={this.move} stop={this.stop} />
+      ) : (
+        ""
       );
     }
   };

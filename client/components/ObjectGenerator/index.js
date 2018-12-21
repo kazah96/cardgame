@@ -1,13 +1,4 @@
 import { connect } from "react-redux";
-
-// import { WrappedComponent } from "components/GameObject";
-// import Imaged from "components/GameObject/Imaged";
-// import InputHandler from "components/GameObject/InputHandler";
-// import AiHandler from "components/GameObject/AiHandler";
-// import Clamped from "components/GameObject/Clamped";
-// import Ranged from "components/GameObject/Ranged";
-// import MovingObject from "components/GameObject/MovingObject";
-
 import objectActions from "actions/gameObject";
 
 import ObjectFactory from "game/objectFactory/objectFactory";
@@ -29,7 +20,6 @@ const mapStateToProps = (state, ownProps) => {
 export default function({ objectName, overrideParams }) {
   const factory = new ObjectFactory({ objectName, overrideParams });
   const Component = factory.getComponent();
-  const aaa = factory.getObject();
 
   return connect(
     mapStateToProps,

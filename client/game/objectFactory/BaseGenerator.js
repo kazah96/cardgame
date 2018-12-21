@@ -2,16 +2,12 @@ import _ from "lodash";
 
 export default function BaseGenerator({
   priority,
-  schemaMatcher,
+  schema,
   objGenerator,
   componentWrapperGenerator,
 }) {
   const defaultPriority = 0;
   const defaultFunction = () => {};
-  const defaultSchemaMatcher = () => true;
-
-  const newSchemaMatcher =
-    typeof schemaMatcher === "function" ? schemaMatcher : defaultSchemaMatcher;
 
   if (typeof objGenerator !== "function")
     throw new Error("Object generator should be a function");
@@ -27,13 +23,13 @@ export default function BaseGenerator({
     // приоритет прописанный в генераторе
     if (typeof priority === "number") newPriority = priority;
 
-    if (!newSchemaMatcher(props)) {
-      throw new Error(`Prop "${props}" dont match schema`);
-    }
-
     if (props !== false) {
       // приоритет прописанный в конфиге
       if (typeof props.priority === "number") newPriority = props.priority;
+
+      if (schema && !schema.validateSync(props)) {
+        throw new Error(`Prop "${props}" dont match schema`);
+      }
 
       // destruct потому что merge мутирует объект
       getObject = previousObject =>
